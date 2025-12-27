@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc Dizon - Clinic</title>
+    <style>
+        /*
+         * This custom CSS section replaces the need for Tailwind CSS CDN.
+         * The styles are now self-contained within this HTML file.
+         */
+
+        /* Apply the Inter font to all elements for a clean, modern look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: white; /* Equivalent to Tailwind's bg-white */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0rem; /* Equivalent to Tailwind's p-4 */
+        }
+
+        .clinic-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .clinic-header img {
+            max-width: 180mm;
+            height: auto;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Equivalent to Tailwind's space-y-6 */
+            width: 100%;
+            max-width: 28rem; /* Equivalent to Tailwind's md:w-[28rem] */
+            align-items: center; /* Center buttons within the container */
+        }
+
+        /* Custom CSS for the button styles */
+        .big-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            max-width: 28rem; /* Equivalent to Tailwind's md:w-[28rem] */
+            height: 5rem; /* Equivalent to Tailwind's h-28 (112px) */
+            padding: 1.5rem; /* Equivalent to Tailwind's p-6 */
+            border-radius: 1.5rem; /* Equivalent to Tailwind's rounded-3xl */
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem; /* Equivalent to Tailwind's text-2xl */
+            letter-spacing: 0.05em; /* Equivalent to Tailwind's tracking-wide */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Equivalent to Tailwind's shadow-lg */
+            text-align: center;
+            text-decoration: none; /* Removes underline from links */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background: linear-gradient(180deg, #bfa867 0%, #af9550 100%);
+        }
+
+        .big-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Media queries to handle responsiveness like Tailwind */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .big-button {
+                max-width: 24rem; /* sm:w-96 */
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .big-button {
+                max-width: 28rem; /* md:w-[28rem] */
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+
+    <div class="clinic-header">
+        <img src="Preclaro-Dizon-Logo.png" alt="CLINIC-LOGO">
+    </div>
+
+    <div class="button-container">
+
+        <a href="Doc Dizon - Laboratory Diagnostics/MAIN FORM Doc Dizon - Laboratory Diagnostics.html" target="_blank"
+            class="big-button">
+            LABORATORY<br>DIAGNOSTICS
+        </a>
+
+        <a href="Doc Dizon - Medical Certificate/MAIN FORM Doc Dizon - Medical Certificate.html" target="_blank"
+            class="big-button">
+            MEDICAL<br>CERTIFICATE
+        </a>
+
+        <a href="Doc Dizon - Medical Prescription/MAIN FORM Doc Dizon - Medical Prescription.html" target="_blank"
+            class="big-button">
+            MEDICAL<br>PRESCRIPTION
+        </a>
+
+    </div>
+
+</body>
+
+</html>

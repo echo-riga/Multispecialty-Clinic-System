@@ -1,0 +1,929 @@
+body {
+  font-family: "Arial", sans-serif;
+  width: 148mm;
+  /* A5 width */
+  height: auto;
+  min-height: 210mm;
+  /* A5 height */
+  margin: 0 auto;
+  padding: 4mm 7mm;
+  box-sizing: border-box;
+  background-color: white;
+  color: #333;
+  line-height: 1.3;
+  font-size: 2.5mm;
+  position: relative;
+  padding-bottom: 15mm;
+}
+
+/* header -> PLP Clinic Logo */
+.clinic-header {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2mm;
+  padding-bottom: 1mm;
+  border-bottom: 2px solid #222;
+  /* Light gray border or line in top of personal information */
+}
+
+.clinic-header img {
+  max-width: 85mm;
+  height: auto;
+}
+
+/* personal information */
+.form-section {
+  margin-bottom: 5mm;
+}
+
+.patient-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3mm;
+  margin-bottom: 5mm;
+}
+
+.patient-info input,
+.patient-info select {
+  flex: 1;
+  min-width: 25mm;
+  padding: 1.5mm;
+  border: none;
+  border-bottom: 0.3mm solid #ddd;
+  font-size: 5mm;
+  background-color: transparent;
+}
+
+#name {
+  flex: 3;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#age {
+  flex: 0.5;
+  min-width: 12mm;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#sex {
+  outline: none;
+  background: transparent;
+}
+
+#address {
+  flex: 2;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#date {
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+/* Ensure cloned fields on subsequent pages match first page sizing */
+.patient-info input[id^="name-"],
+.patient-info select[id^="name-"] {
+  flex: 3;
+}
+
+.patient-info input[id^="age-"],
+.patient-info select[id^="age-"] {
+  flex: 0.5;
+  min-width: 12mm;
+}
+
+.patient-info input[id^="sex-"],
+.patient-info select[id^="sex-"] {
+  grid-column: 3;
+}
+
+/* Add Another Medication and Print Prescription Button */
+#button-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 3mm;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+  margin-top: -0.8mm;
+  table-layout: fixed; /* Added for consistent column widths */
+}
+table th {
+  padding: 0.3mm !important; /* REDUCED PADDING */
+  margin: 0 !important;
+}
+
+.row {
+  height: 40px;
+}
+
+/* medication form background */
+input,
+select {
+  padding: 1mm;
+  border: none;
+  border-bottom: 0.2mm solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-size: 5mm;
+}
+
+.medication-type {
+  flex: 1;
+  min-width: 25mm;
+}
+
+/* Remove grey underlines from inputs inside the table */
+table input,
+table select {
+  border: none;
+  border-bottom: none;
+}
+/* Table header cell - MEDICINE & DOSE column - INCREASED to 42% */
+#medicine\&dose {
+  text-align: left;
+  vertical-align: left;
+  width: 53%; /* INCREASED from 40% to 42% */
+}
+
+#titleM\&D {
+  font-size: 3.2mm;
+}
+
+.rx-symbol {
+  margin-left: 2px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 2mm;
+  position: relative; /* Added for positioning context */
+}
+/* Rx image */
+.rx-symbol img {
+  width: 8.3mm; /* Increased from 5mm */
+  height: auto;
+  filter: grayscale(100%) contrast(150%);
+  position: absolute; /* Changed to absolute */
+  left: 0;
+  top: 50%;
+  padding-bottom: 6%;
+  transform: translateY(-50%) scale(1.4); /* Center vertically and scale up */
+  z-index: 10; /* Bring it to front */
+}
+/* QUANTITY COLUMN - REDUCED to 6% and smaller font */
+#quantity-header {
+  width: 4% !important;
+  font-size: 2.3mm; /* Smaller font */
+  padding: 0 0.3mm; /* Reduced padding */
+  text-align: center;
+  letter-spacing: normal;
+}
+
+#bedtime {
+  width: 5% !important;
+}
+
+/* BREAKFAST, LUNCH, DINNER - Larger font */
+#breakfast,
+#lunch,
+#dinner {
+  width: 8.5% !important;
+  height: 15px;
+  font-size: 1.6mm;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  word-break: break-word;
+  letter-spacing: -0.05mm;
+}
+
+/* BEDTIME - Larger font */
+#bedtime {
+  width: 4% !important;
+  height: 15px;
+  font-size: 1.4mm;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  word-break: break-word;
+  letter-spacing: -0.05mm;
+}
+
+/* Before/After columns - each gets 7.4285% */
+.before,
+.after {
+  width: 8.5% !important;
+  font-size: 1.4mm !important;
+  text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 12px;
+  letter-spacing: 0.1mm; /* Reduced from 0.15mm */
+  white-space: nowrap;
+}
+
+/* Bedtime only has one column (Before) */
+#bedtime + .before {
+  width: 5% !important;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td span,
+td .medication-type {
+  display: inline-block;
+}
+
+/* Number positioning: top-left & smaller */
+#number {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 3mm; /* smaller than before */
+  line-height: 1;
+}
+
+/* Ensure the table cell can position the number */
+td {
+  position: relative;
+}
+
+/* Prevent flex from affecting the number position */
+td .cell-content {
+  position: static;
+}
+
+#medication,
+input[id^="medication-"],
+.medication-type input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 3.4mm;
+}
+
+.medication-type select:focus {
+  outline: none;
+}
+
+td .cell-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* QUANTITY CELL - REDUCED width */
+.quantity-cell {
+  width: 4% !important;
+  text-align: center !important;
+  padding: 0; /* No padding */
+}
+
+/* QUANTITY INPUT - Smaller font and center aligned */
+#quantity,
+input[id^="quantity-"] {
+  width: 100%;
+  text-align: center; /* Ensures center alignment */
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 3mm; /* REDUCED from 4mm to 3.5mm */
+  font-family: "Arial", sans-serif;
+  padding: 0;
+  margin: 0 auto; /* Center the input content */
+  letter-spacing: normal;
+  display: block; /* Ensures proper centering */
+}
+
+input[type="checkbox"] {
+  height: 3mm;
+  width: 3mm;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Meal checkbox cells - 7.4285% for before/after */
+.checkbox-cell {
+  width: 5% !important;
+  text-align: center;
+}
+
+/* Bedtime checkbox cell (only one column) */
+.bedtime-checkbox {
+  width: 5% !important;
+  text-align: center;
+}
+
+/* Notes and Meal Notes inputs */
+table input.note-input,
+table input.meal-note-input,
+input.note-input,
+input.meal-note-input,
+#medication.note-input,
+#medication.meal-note-input,
+input#medication.note-input,
+input#medication.meal-note-input {
+  font-size: 3mm !important;
+}
+
+/* Footer -> Doctor Information */
+.footer-section {
+  justify-content: flex-end;
+  margin-top: 5mm;
+  align-items: flex-end;
+  padding-top: 3mm;
+  /* Light gray border or line in top of doctor information */
+  position: absolute;
+  bottom: 5mm;
+  width: calc(100% - 20mm);
+}
+
+.certificate-container {
+  display: flex;
+  justify-content: space-between;
+  /* pushes left & right */
+  align-items: flex-end;
+  /* align them at the bottom */
+  margin-top: 20mm;
+  /* adjust spacing as needed */
+  font-family: Arial, sans-serif;
+}
+
+/* follow-up styles */
+.follow-up {
+  flex: 0 0 auto;
+  width: 35%;
+}
+
+.follow-up-date {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+
+.follow-up-date label {
+  white-space: nowrap;
+  font-size: 4mm;
+  color: #666;
+}
+
+.follow-up-date input {
+  flex: 1;
+  min-width: 30mm;
+  font-size: 4mm;
+}
+
+.doctor-name {
+  font-weight: bold;
+  font-size: 12pt;
+  color: #0b3d5c;
+  /* dark teal/blue for professionalism */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.license {
+  font-size: 11pt;
+  color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.certificate-footer {
+  position: absolute;
+  bottom: 13mm;
+  right: 0mm;
+  font-size: 13pt;
+  text-align: center;
+}
+
+.footer {
+  background-color: #c7b26e;
+  /* soft gold */
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 10.5pt;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 3mm;
+  margin-top: 3mm;
+}
+
+button {
+  padding: 1.5mm 3mm;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 1mm;
+  cursor: pointer;
+  font-size: 4.5mm;
+}
+
+button.clear-btn {
+  background-color: #f44336;
+}
+
+/* Hover effect */
+button.clear-btn:hover {
+  background-color: #d32f2f;
+  /* darker red */
+}
+
+/* Active (when clicked) */
+button.clear-btn:active {
+  background-color: #b71c1c;
+  /* even darker red */
+}
+
+button.print {
+  background-color: #2196f3;
+}
+
+/* Hover effect */
+button.print:hover {
+  background-color: #1976d2;
+  /* darker blue */
+}
+
+/* Active (when clicked) */
+button.print:active {
+  background-color: #0d47a1;
+  /* even darker blue */
+}
+
+@media print {
+  @page {
+    size: A5;
+    margin: 0;
+
+    @top-center {
+      content: "";
+    }
+
+    @top-left {
+      content: "";
+    }
+
+    @top-right {
+      content: "";
+    }
+
+    @bottom-center {
+      content: "";
+    }
+
+    @bottom-left {
+      content: "";
+    }
+
+    @bottom-right {
+      content: "";
+    }
+  }
+
+  html,
+  body {
+    width: 148mm;
+    height: 209mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative;
+    background: white;
+  }
+
+  body {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 4mm 10mm 0 10mm !important;
+  }
+
+  /* Hide spacer divs in print */
+  div[style*="height:"],
+  div[style*="height: "] {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  /* Prevent page breaks */
+  html,
+  body {
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  /* Ensure borders print properly */
+  table,
+  th,
+  td {
+    border: 1px solid #000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .clinic-header img {
+    max-width: 85mm;
+    height: auto;
+  }
+
+  button {
+    display: none;
+  }
+
+  /* QUANTITY PRINT - REDUCED width and smaller font */
+  #quantity-header {
+    width: 2% !important;
+    font-size: 2mm !important; /* Smaller font */
+  }
+
+  .meal-header {
+    width: 8.5% !important; /* Adjusted from 15.14% */
+    padding: 1.5mm !important;
+    margin: 1.5mm !important;
+  }
+
+  #bedtime {
+    width: 5% !important;
+  }
+
+  /* Bedtime only has one column (Before) */
+  #bedtime + .before {
+    width: 5% !important;
+  }
+
+  .quantity-cell {
+    width: 4% !important;
+    padding: 0 !important;
+  }
+
+  /* QUANTITY INPUT PRINT - Smaller font and center aligned */
+  #quantity,
+  input[id^="quantity-"] {
+    font-size: 3mm !important; /* REDUCED from 4mm to 3.5mm */
+    font-family: "Arial", sans-serif !important;
+    letter-spacing: normal !important;
+    padding: 0 !important;
+    margin: 0 auto !important; /* Center alignment */
+    text-align: center !important; /* Center alignment */
+    display: block !important; /* Ensures proper centering */
+  }
+
+  .checkbox-cell,
+  .bedtime-checkbox {
+    width: 5% !important;
+  }
+
+  #name,
+  #age,
+  #sex,
+  #address,
+  #date {
+    font-size: 4.2mm !important;
+  }
+
+  #breakfast,
+  #lunch,
+  #dinner {
+    height: 15px;
+    font-size: 1.6mm;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    word-break: break-word !important;
+    letter-spacing: -0.05mm !important;
+  }
+
+  #bedtime {
+    height: 15px;
+    width: 4% !important;
+    font-size: 1.3mm !important;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    word-break: break-word !important;
+    letter-spacing: -0.05mm !important;
+  }
+
+  table {
+    margin-top: 1mm;
+  }
+
+  .before,
+  .after {
+    width: 8.5% !important;
+    font-size: 1.4mm !important;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 12px;
+    letter-spacing: 0.1mm !important; /* Reduced from 0.15mm */
+    white-space: nowrap;
+  }
+
+  .row {
+    height: 40px;
+  }
+  .rx-symbol {
+    margin-left: 2px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 1mm;
+    position: relative;
+  }
+
+  .rx-symbol img {
+    width: 8.3mm; /* Increased from 4mm for print */
+    position: absolute; /* Same for print */
+    left: 0;
+    top: 50%;
+    padding-bottom: 6.5%;
+    transform: translateY(-50%) scale(1.4); /* Same effect for print */
+  }
+
+  #titleM\&D {
+    font-size: 3.5mm;
+  }
+
+  #medication,
+  input[id^="medication-"],
+  .medication-type input {
+    height: 5mm;
+    display: block;
+    margin: 0 auto;
+    font-size: 3.8mm !important;
+  }
+
+  input[type="checkbox"] {
+    height: 3mm;
+    width: 3mm;
+  }
+
+  input,
+  select {
+    border-bottom: 0.2mm solid #ccc !important;
+    color: black !important;
+    font-size: 4.2mm !important;
+  }
+
+  table input.note-input,
+  table input.meal-note-input {
+    font-size: 3mm !important;
+  }
+
+  /* Remove grey underlines from inputs inside the table for print */
+  table input,
+  table select {
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .medication-type select {
+    height: 22px;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    box-shadow: none !important;
+    /* <-- ito ang nag-aalis ng gray underline */
+    font-size: 2.8mm;
+  }
+
+  .medication-type select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  td .cell-content {
+    display: flex;
+    justify-content: space-between;
+    /* number left, dropdown right */
+    align-items: center;
+  }
+
+  #medication {
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  #quantity {
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  /* Number positioning: top-left & smaller */
+  #number {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 3mm; /* smaller than before */
+    line-height: 1;
+  }
+
+  /* Ensure the table cell can position the number */
+  td {
+    position: relative;
+  }
+
+  /* Prevent flex from affecting the number position */
+  td .cell-content {
+    position: static;
+  }
+
+  #space {
+    height: -20mm;
+  }
+
+  div[style*="height: 12mm"] {
+    display: none !important;
+  }
+
+  /* Footer -> Doctor Information */
+  .footer-section {
+    justify-content: flex-end;
+    margin-top: 5mm;
+    align-items: flex-end;
+    padding-top: 3mm;
+    width: calc(100% - 20mm);
+  }
+
+  .footer-section {
+    position: relative !important;
+    height: auto !important;
+    margin-top: auto !important;
+    /* Pushes to bottom of flex container */
+    width: 100%;
+    overflow: visible;
+  }
+
+  .footer-note,
+  .footer {
+    position: relative;
+  }
+
+  .certificate-container {
+    display: flex;
+    justify-content: space-between;
+    /* pushes left & right */
+    align-items: flex-end;
+    /* align them at the bottom */
+    position: fixed;
+    bottom: 0;
+    left: 25mm;
+    right: 15mm;
+    transform: translateY(12mm);
+    width: calc(100% - 30mm);
+    font-family: Arial, sans-serif;
+  }
+
+  /* follow-up styles */
+  .follow-up {
+    flex: 0 0 auto;
+    width: 30%;
+    position: absolute;
+    bottom: 35mm;
+    left: -10mm;
+  }
+
+  .follow-up-date {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .follow-up-date label {
+    white-space: nowrap;
+    font-size: 3.5mm;
+    color: #666;
+  }
+
+  .follow-up-date input {
+    flex: 1;
+    min-width: 30mm;
+    font-size: 3.5mm !important;
+  }
+
+  .doctor-name {
+    font-weight: bold;
+    font-size: 12pt;
+    color: #0b3d5c;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .license {
+    font-size: 10pt;
+    color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .certificate-footer {
+    position: absolute;
+    bottom: 35mm;
+    right: 15mm;
+    text-align: right;
+    font-size: 9.9pt;
+  }
+
+  .footer {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background-color: #c7b26e !important;
+    color: white !important;
+    font-size: 8pt;
+    position: relative !important;
+    bottom: auto;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 0;
+    padding: 5px 10mm;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  /* Default: hide select box on print */
+  .medication-type select {
+    display: none;
+  }
+
+  /* If may value (hindi empty), ipapakita yung replacement text */
+  .medication-type.has-value::after {
+    content: attr(data-value);
+    /* ipapakita yung piniling value */
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  /* Make content more compact for printing */
+  .medication-section {
+    margin-bottom: 2mm !important;
+  }
+
+  .medication-item {
+    margin-bottom: 1.5mm !important;
+    padding: 1mm !important;
+  }
+
+  .form-section {
+    margin-bottom: 3mm !important;
+  }
+
+  .patient-info {
+    margin-bottom: 3mm !important;
+  }
+
+  /* Hide spacer div when printing */
+  div[style*="height: 8mm"] {
+    display: none !important;
+  }
+}
+/* STRICT: remove ONLY number input spinner buttons */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

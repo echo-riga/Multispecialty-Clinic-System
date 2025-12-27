@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Doc Dizon - Laboratory Diagnostics</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Doc Dizon - Laboratory Diagnostics.css" />
+  </head>
+
+  <body>
+    <!-- PLP Clinic Logo -->
+    <div class="clinic-header">
+      <img src=".\Preclaro-Dizon-Logo.png" alt="CLINIC-LOGO" />
+      <span
+        style="
+          font-size: 3mm;
+          display: block;
+          text-align: center;
+          white-space: nowrap;
+        "
+      >
+        Monday to Friday 5PM-8PM │ Saturday 9AM-2PM │ Sunday 9AM-2PM</span
+      >
+    </div>
+
+    <!-- Personal Information -->
+    <div class="form-section">
+      <div class="patient-info">
+        <input type="text" id="name" placeholder="Name" />
+        <input type="number" id="age" placeholder="Age" />
+        <select id="sex">
+          <option value="" disabled selected>Sex</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="patient-info">
+        <!-- <input type="text" id="address" placeholder="Address" style="flex: 2;"> -->
+        <input type="text" id="address" placeholder="Address" />
+        <input type="date" id="date" placeholder="Date" />
+      </div>
+    </div>
+
+    <div class="section-title">Laboratory Checklist</div>
+
+    <div class="checklist" id="main-checklist">
+      <!-- 1. Hematology -->
+      <div class="category" id="hematology-category">
+        <h3>Hematology</h3>
+        <select multiple class="multi-select" id="hematology-select">
+          <option value="CBC w/ Platelet Count">CBC w/ Platelet Count</option>
+          <option value="Prothrombin Time">Prothrombin Time</option>
+          <option value="APTT">Partial Thromboplastin Time (PTT)</option>
+          <option value="Clotting Time">Clotting Time</option>
+          <option value="Bleeding Time">Bleeding Time</option>
+          <option value="Peripheral Blood Smear">Peripheral Blood Smear</option>
+          <option value="Blood Typing (RH)">Blood Typing (RH)</option>
+        </select>
+        <div class="print-only selected-tests" id="hematology-selected"></div>
+      </div>
+
+      <!-- 2. Clinical Microscopy -->
+      <div class="category" id="microscopy-category">
+        <h3>Clinical Microscopy</h3>
+        <select multiple class="multi-select" id="microscopy-select">
+          <option value="Urinalysis">Urinalysis</option>
+          <option value="Fecalysis">Fecalysis</option>
+          <option value="Occult Blood">Occult blood</option>
+          <option value="Pregnancy Test (Serum)">Pregnancy Test (Serum)</option>
+          <option value="Pregnancy Test (Urine)">Pregnancy Test (Urine)</option>
+        </select>
+        <div class="print-only selected-tests" id="microscopy-selected"></div>
+      </div>
+
+      <!-- 3. Serology/Immunology -->
+      <div class="category" id="serology-category">
+        <h3>Serology</h3>
+        <select multiple class="multi-select" id="serology-select">
+          <option value="Dengue NS1">Dengue NS1</option>
+          <option value="Dengue Duo IgG">Dengue Duo IgG</option>
+          <option value="Dengue Duo IgM">Dengue Duo IgM</option>
+          <option value="VDRL (RPR)">VDRL (RPR)</option>
+          <option value="HBsAg">HBsAg</option>
+          <option value="Rubella IgM">Rubella IgM</option>
+          <option value="Rubella IgG">Rubella IgG</option>
+          <option value="HIV Screening">HIV Screening</option>
+          <option value="CRP Qualitative">CRP Qualitative</option>
+          <option value="CRP Quantitative">CRP Quantitative</option>
+          <option value="ASO Screening">ASO Screening</option>
+          <option value="ASO Titer">ASO Titer</option>
+        </select>
+        <div class="print-only selected-tests" id="serology-selected"></div>
+      </div>
+
+      <!-- 4. Bacteriology -->
+      <div class="category" id="bacteriology-category">
+        <h3>Bacteriology</h3>
+        <select multiple class="multi-select" id="bacteriology-select">
+          <option value="Urine Culture & Sensitivity">
+            Urine Culture & Sensitivity
+          </option>
+          <option value="Blood Culture & Sensitivity">
+            Blood Culture & Sensitivity
+          </option>
+          <option value="Gram Staining">Gram Staining</option>
+          <option value="KOH Staining">KOH Staining</option>
+          <option value="AFB Staining">AFB Staining</option>
+        </select>
+        <div class="print-only selected-tests" id="bacteriology-selected"></div>
+      </div>
+
+      <!-- 5. Clinical Chemistry -->
+      <div class="category" id="chemistry-category">
+        <h3>Clinical Chemistry</h3>
+        <select multiple class="multi-select" id="chemistry-select">
+          <option value="Fasting Blood Sugar (FBS)">
+            Fasting Blood Sugar (FBS)
+          </option>
+          <option value="Random Blood Sugar (RBS)">
+            Random Blood Sugar (RBS)
+          </option>
+          <option value="HbA1c">HbA1c</option>
+          <option value="Blood Urea Nitrogen (BUN)">
+            Blood Urea Nitrogen (BUN)
+          </option>
+          <option value="Uric Acid">Uric Acid</option>
+          <option value="Creatinine">Creatinine</option>
+          <option value="Sodium (Na)">Sodium (Na)</option>
+          <option value="Potassium (K)">Potassium (K)</option>
+          <option value="Chloride (Cl)">Chloride (Cl)</option>
+          <option value="Calcium (Ca)">Calcium (Ca)</option>
+          <option value="Ionized Calcium (iCa)">Ionized Calcium (iCa)</option>
+          <option value="Phosphorus (P)">Phosphorus (P)</option>
+          <option value="SGOT (AST)">SGOT (AST)</option>
+          <option value="SGPT (ALT)">SGPT (ALT)</option>
+          <option value="Lipid Profile">Lipid Profile</option>
+          <option value="Total Cholesterol">Total Cholesterol</option>
+          <option value="Triglycerides">Triglycerides</option>
+          <option value="HDL">HDL</option>
+          <option value="LDL">LDL</option>
+          <option value="VLDL">VLDL</option>
+          <option value="PSA">Prostate Specific Antigen (PSA)</option>
+        </select>
+        <div class="print-only selected-tests" id="chemistry-selected"></div>
+      </div>
+
+      <!-- 6. Enzymes -->
+      <div class="category" id="enzymes-category">
+        <h3>Enzymes</h3>
+        <select multiple class="multi-select" id="enzymes-select">
+          <option value="Alkaline Phosphatase">Alkaline Phosphatase</option>
+          <option value="CPK-MB">CPK-MB</option>
+          <option value="CPK-MM">CPK-MM</option>
+          <option value="GGTP">GGTP</option>
+          <option value="Serum LDH">Serum LDH</option>
+          <option value="SGOT (AST)">SGOT (AST)</option>
+          <option value="SGPT (ALT)">SGPT (ALT)</option>
+          <option value="Total CPK">Total CPK</option>
+          <option value="Troponin I Qualitative">Troponin I Qualitative</option>
+          <option value="Troponin I Quantitative">
+            Troponin I Quantitative
+          </option>
+        </select>
+        <div class="print-only selected-tests" id="enzymes-selected"></div>
+      </div>
+
+      <!-- 7. Hepatitis -->
+      <div class="category" id="hepatitis-category">
+        <h3>Hepatitis</h3>
+        <select multiple class="multi-select" id="hepatitis-select">
+          <option value="Anti-HAV lgG">Anti-HAV lgG</option>
+          <option value="Anti-HAV lgM">Anti-HAV lgM</option>
+          <option value="Anti-HBclgG">Anti-HBclgG</option>
+          <option value="Anti-HBclgM">Anti-HBclgM</option>
+          <option value="Anti-HBe">Anti-HBe</option>
+          <option value="Anti-HBs">Anti-HBs</option>
+          <option value="Anti-HCV">Anti-HCV</option>
+          <option value="HBeAg">HBeAg</option>
+          <option value="HBsAg (Confirmatory)">HBsAg (Confirmatory)</option>
+          <option value="HBsAg (Screening)">HBsAg (Screening)</option>
+          <option value="Hepa A & B Profile (1-5 + 7)">
+            Hepa A & B Profile (1-5 + 7)
+          </option>
+          <option value="Hepa A, B, C (1-5, +7, & 9)">
+            Hepa A, B, C (1-5, +7, & 9)
+          </option>
+          <option value="Hepa A Profile (7-8)">Hepa A Profile (7-8)</option>
+          <option value="Hepa B Full Profile (1-6)">
+            Hepa B Full Profile (1-6)
+          </option>
+        </select>
+        <div class="print-only selected-tests" id="hepatitis-selected"></div>
+      </div>
+
+      <!-- 8. Thyroid Function Test -->
+      <div class="category" id="thyroid-category">
+        <h3>Thyroid Function Test</h3>
+        <select multiple class="multi-select" id="thyroid-select">
+          <option value="FT3">FT3</option>
+          <option value="FT4">FT4</option>
+          <option value="FT3 RIA">FT3 RIA</option>
+          <option value="FT4 RIA">FT4 RIA</option>
+          <option value="Thyroglobulin">Thyroglobulin</option>
+          <option value="TSH">TSH</option>
+          <option value="TSH (IRMA)">TSH (IRMA)</option>
+        </select>
+        <div class="print-only selected-tests" id="thyroid-selected"></div>
+      </div>
+
+      <!-- 9. Tumour Markers -->
+      <div class="category" id="tumour-category">
+        <h3>Tumour Markers</h3>
+        <select multiple class="multi-select" id="tumour-select">
+          <option value="CA 12-5 (Ovary)">CA 12-5 (Ovary)</option>
+          <option value="CA 15-3 (Breast)">CA 15-3 (Breast)</option>
+          <option value="CA 19-9 (Pancreas)">CA 19-9 (Pancreas)</option>
+          <option value="CEA">CEA</option>
+          <option value="PSA">PSA</option>
+          <option value="Serum B-HCG">Serum B-HCG</option>
+        </select>
+        <div class="print-only selected-tests" id="tumour-selected"></div>
+      </div>
+
+      <!-- 10. Histopathology -->
+      <div class="category" id="histopathology-category">
+        <h3>Histopathology</h3>
+        <select multiple class="multi-select" id="histopathology-select">
+          <option value="Aspiration Biopsy">Aspiration Biopsy</option>
+          <option value="Small/Medium/Large/Extra Large">
+            Small/Medium/Large/Extra Large
+          </option>
+        </select>
+        <div
+          class="print-only selected-tests"
+          id="histopathology-selected"
+        ></div>
+      </div>
+
+      <!-- 11. X-Ray -->
+      <div class="category" id="xray-category">
+        <h3>X-Ray</h3>
+        <select multiple class="multi-select" id="xray-select">
+          <option value="Chest PA-L">Chest PA, Lateral</option>
+          <option value="Chest AP & Lateral">Chest AP, Lateral</option>
+          <option value="Chest Apicolordotic View">
+            Chest Apicolordotic View
+          </option>
+          <option value="Ankle AP/Lateral">Ankle AP/Lateral etc.</option>
+        </select>
+        <div class="print-only selected-tests" id="xray-selected"></div>
+      </div>
+
+      <!-- 12. Ultrasound -->
+      <div class="category" id="ultrasound-category">
+        <h3>Ultrasound</h3>
+        <select multiple class="multi-select" id="ultrasound-select">
+          <option value="Breast">Breast</option>
+          <option value="Gallbladder">Gallbladder</option>
+          <option value="HBT">HBT</option>
+          <option value="Inguino-Scrotal">Inguino-Scrotal</option>
+          <option value="Kidney">Kidney</option>
+          <option value="KUB">KUB</option>
+          <option value="KUB - P">KUB - P</option>
+          <option value="Liver">Liver</option>
+          <option value="Lower Abdomen">Lower Abdomen</option>
+          <option value="Pancreas">Pancreas</option>
+          <option value="Pelvic">Pelvic</option>
+          <option value="Prostate">Prostate</option>
+          <option value="Spleen">Spleen</option>
+          <option value="Transvaginal">Transvaginal</option>
+          <option value="Upper Abdomen">Upper Abdomen</option>
+          <option value="Whole Abdomen">Whole Abdomen</option>
+        </select>
+        <div class="print-only selected-tests" id="ultrasound-selected"></div>
+      </div>
+
+      <!-- 13. Cardiology -->
+      <div class="category" id="cardiology-category">
+        <h3>Cardiology</h3>
+        <select multiple class="multi-select" id="cardiology-select">
+          <option value="2D Echo Plain">2D Echo Plain</option>
+          <option value="2D Echo with Doppler">2D Echo with Doppler</option>
+          <option value="ECG (Electrocardiogram)">
+            ECG (Electrocardiogram)
+          </option>
+        </select>
+        <div class="print-only selected-tests" id="cardiology-selected"></div>
+      </div>
+
+      <!-- 14. Vascular -->
+      <div class="category" id="vascular-category">
+        <h3>Vascular</h3>
+        <select multiple class="multi-select" id="vascular-select">
+          <option value="Ankle Brachial Index (ABI)">
+            Ankle Brachial Index (ABI)
+          </option>
+          <option value="Arterial Duplex Scan - Lower (Bilateral/Unilateral)">
+            Arterial Duplex Scan - Lower (Bilateral/Unilateral)
+          </option>
+          <option value="Arterial Duplex Scan - Upper">
+            Arterial Duplex Scan - Upper
+          </option>
+          <option value="AV Mapping">AV Mapping</option>
+          <option value="Carotid Duplex Scan">Carotid Duplex Scan</option>
+          <option value="Venous Duplex Scan - Lower (Bilateral/Unilateral)">
+            Venous Duplex Scan - Lower (Bilateral/Unilateral)
+          </option>
+          <option value="Venous Duplex Scan - Upper">
+            Venous Duplex Scan - Upper
+          </option>
+        </select>
+        <div class="print-only selected-tests" id="vascular-selected"></div>
+      </div>
+
+      <!-- 15. Others -->
+      <div class="category others" id="others-category">
+        <h3>Others</h3>
+        <input
+          type="text"
+          id="other-tests"
+          placeholder="Specify other test(s)..."
+        />
+        <div class="print-only selected-tests" id="others-selected"></div>
+      </div>
+    </div>
+
+    <!-- Add Another Medication and Print Prescription Button -->
+    <div id="button-container">
+      <button class="clear-btn" onclick="clearBtn()">Clear All</button>
+      <button class="print" onclick="printPrescription()">
+        Print Prescription
+      </button>
+    </div>
+
+    <div style="height: 12mm"></div>
+
+    <div style="height: 12mm"></div>
+
+    <div style="height: 12mm"></div>
+
+    <!-- Footer -> Doctor Information -->
+    <div class="footer-section" id="main-footer">
+      <!-- <div class="follow-up">
+      <div class="follow-up-date">
+        <label for="follow-up">Follow up on:</label>
+        <input type="date" id="follow-up">
+      </div>
+    </div>
+
+    <div class="certificate-footer">
+      <p class="doctor-name" id="doctor-name">Irish Jasmine Preclaro - Dizon MD, FPSO - HNS</p>
+      <p class="license" id="doctor-license">License No. 0116421</p>
+    </div> -->
+
+        <div class="footer-section" id="main-footer">
+      <div class="certificate-container">
+        <div class="follow-up">
+          <div class="follow-up-date">
+            <label for="follow-up">Follow up on:</label>
+            <input type="date" id="follow-up" />
+          </div>
+        </div>
+
+        <div class="certificate-footer">
+          <p class="doctor-name" id="doctor-name-2">
+            Irish Jasmine Preclaro - Dizon MD, FPSO - HNS
+          </p>
+          <p class="license" id="doctor-license-2">License No. 0116421</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        Unit K, No. 8 A. Mabini St. Brgy. Kapasigan, Pasig City | 0927 411 6706
+        | preclarodizonclinic@gmail.com
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="Doc Dizon - Laboratory Diagnostics.js"></script>
+  </body>
+</html>

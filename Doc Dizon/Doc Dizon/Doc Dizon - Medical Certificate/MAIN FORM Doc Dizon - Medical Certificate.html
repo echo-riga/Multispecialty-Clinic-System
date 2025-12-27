@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Doc Dizon - Medical Certificate</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Doc Dizon - Medical Certificate.css">
+</head>
+
+<body>
+  <!-- DOCDIZON Logo -->
+  <div class="clinic-header">
+    <img src="../Preclaro-Dizon-Logo.png" alt="CLINIC-LOGO">
+    <span style="display: block; text-align: center; white-space: nowrap;"> Monday to Friday 5PM-8PM  │ Saturday 9AM-2PM  │ Sunday 9AM-2PM</span>
+    </div>
+  </div>
+  <div class="date-row">
+    <label>Date:</label>
+    <input type="date" id="date">
+  </div>
+  <div class="cert-title">MEDICAL CERTIFICATE</div>
+  <div class="main-content">
+    To whom it may concern:<br><br>
+   This is to certify that&nbsp;<input type="text" id="certify-name" class="input-long-line" style="display:inline-block; width: calc(100% - 120px);">
+    <br>
+      <input type="number" id="certify-age" class="input-line" min="0" max="150" maxlength="3"> years old, <input
+      type="text" id="certify-sex" class="input-line"> presently residing at <input type="text"
+      id="certify-address1" class="input-long-line">
+    <br> was examined and treated at my clinic on
+    <input type="date" id="certify-datefrom" class="input-long-line"> for
+    <textarea id="assessment1" class="assessment-textarea" rows="2"></textarea>
+    <span class="section-label">Diagnosis:</span>
+    <textarea id="certify-for" class="diagnosis-textarea" rows="2"></textarea>
+    <span>.</span>
+    <span class="section-label">Recommendation / s:</span>
+    <textarea id="recommendation1" class="recommendation-textarea" rows="3"></textarea>
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- This certificate is being issued upon request of the above mentioned name for whatever purpose it may serve,
+    excluding legal matters. -->
+    <div class="statement">This certification is issued upon the request of the patient for whatever purpose it <br>
+      may serve except medicolegal purpose</div>
+  </div>
+
+  <div style="height: 12mm;"></div>
+
+  <div class="footer-note">
+    <span style="font-style:italic;">Not valid without<br>dry seal</span>
+  </div>
+
+  <div style="height: 12mm;"></div>
+
+  <!-- Footer -> Doctor Information -->
+  <!-- <div class="footer-section" id="main-footer">
+    <div class="doctor-info">
+      <div class="doctor-name">
+        M.D. <span class="editable-line" contenteditable="true"></span>
+      </div>
+      <div class="license-no">
+        License No. <span class="editable-line" contenteditable="true"></span>
+      </div>
+      <div class="ptr-no">
+        PTR No. <span class="editable-line" contenteditable="true"></span>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Add Another Medication and Print Prescription Button -->
+  <div id="button-container">
+    <button class="clear-btn" onclick="clearBtn()">Clear All</button>
+    <button class="print" onclick="printPrescription()">Print Medical Certificate</button>
+  </div>
+
+  <div style="height: 12mm;"></div>
+
+  <div class="certificate-footer">
+    <p class="doctor-name" id="doctor-name">Irish Jasmine Preclaro - Dizon MD, FPSO - HNS</p>
+    <p class="license" id="doctor-license">License No. 0116421</p>
+  </div>
+
+  <div class="footer">
+    Unit K, No. 8 A. Mabini St. Brgy. Kapasigan, Pasig City | 0927 411 6706 | preclarodizonclinic@gmail.com
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="Doc Dizon - Medical Certificate.js"></script>
+</body>
+
+</html>

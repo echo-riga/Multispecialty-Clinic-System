@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Admin - Database Manager</title>
+    <link rel="stylesheet" href="../style/dashboard.css" />
+    <style>
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 16px;
+            height: calc(100vh - 120px);
+            min-height: 0;
+        }
+
+        .table-list {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .table-list h3 {
+            margin: 0 0 12px 0;
+        }
+
+        .table-list .table-item {
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 4px;
+            transition: background 120ms ease;
+            font-weight: 500;
+        }
+
+        .table-list .table-item:hover {
+            background: var(--bg-soft);
+        }
+
+        .table-list .table-item.active {
+            background: var(--primary-soft);
+            color: var(--primary-strong);
+        }
+
+        .data-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .data-panel h3 {
+            margin: 0 0 12px 0;
+        }
+
+        .data-table-wrap {
+            flex: 1;
+            overflow: auto;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            background: var(--bg-soft);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table tr:hover {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .data-table tr.selected {
+            background: var(--primary-soft);
+        }
+
+        .actions-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .query-section {
+            margin-top: 16px;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .query-section textarea {
+            width: 100%;
+            min-height: 80px;
+            font-family: monospace;
+            resize: vertical;
+        }
+
+        .query-result {
+            margin-top: 12px;
+            max-height: 200px;
+            overflow: auto;
+            font-family: monospace;
+            font-size: 12px;
+            background: var(--bg-soft);
+            padding: 12px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+
+        .modal-form .field {
+            margin-bottom: 12px;
+        }
+
+        .modal-form .field label {
+            font-weight: 600;
+        }
+
+        .modal-form .field input {
+            width: 100%;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .pagination .page-info {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .cell-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .cell-actions button {
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .stats-bar span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+
+<body class="admin">
+    <div class="container wide">
+        <header class="topbar">
+            <h1>
+                <span class="title-wrap">
+                    <span class="avatar">🔐</span>
+                    <span class="who-name">Super Admin</span>
+                </span>
+            </h1>
+            <div class="spacer"></div>
+            <button id="logout-btn" class="btn-secondary btn-small">Logout</button>
+        </header>
+        <main>
+            <div class="admin-grid">
+                <div class="table-list">
+                    <h3>Tables</h3>
+                    <div id="tables-list">Loading...</div>
+                </div>
+                <div class="data-panel">
+                    <div class="actions-bar">
+                        <button id="refresh-btn" class="btn-secondary btn-small">🔄 Refresh</button>
+                        <button id="add-row-btn" class="btn-small" disabled>+ Add Row</button>
+                        <button id="delete-selected-btn" class="btn-danger btn-small" disabled>🗑 Delete
+                            Selected</button>
+                        <div class="spacer"></div>
+                        <div class="stats-bar">
+                            <span id="row-count">0 rows</span>
+                        </div>
+                    </div>
+                    <h3 id="table-title">Select a table</h3>
+                    <div class="data-table-wrap">
+                        <table class="data-table" id="data-table">
+                            <thead id="table-head"></thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button id="prev-page" class="btn-secondary btn-small" disabled>← Prev</button>
+                        <span class="page-info" id="page-info">Page 1</span>
+                        <button id="next-page" class="btn-secondary btn-small" disabled>Next →</button>
+                    </div>
+
+                    <div class="query-section">
+                        <h3>SQL Query</h3>
+                        <textarea id="sql-input"
+                            placeholder="Enter SQL query (e.g., SELECT * FROM users WHERE role = 'doctor')"></textarea>
+                        <div style="display:flex; gap:8px; margin-top:8px;">
+                            <button id="run-query-btn" class="btn-small">▶ Run Query</button>
+                            <span class="muted" style="font-size:12px; align-self:center;">Supports SELECT, INSERT,
+                                UPDATE, DELETE</span>
+                        </div>
+                        <div class="query-result" id="query-result" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Check auth
+            const authUser = JSON.parse(localStorage.getItem('authUser') || '{}');
+            if (!authUser.username || authUser.role !== 'admin') {
+                alert('Super admin access required');
+                window.location.href = '/';
+                return;
+            }
+
+            let currentTable = null;
+            let currentSchema = [];
+            let currentRows = [];
+            let selectedRowId = null;
+            let currentPage = 0;
+            const pageSize = 50;
+            let totalRows = 0;
+
+            const tablesList = document.getElementById('tables-list');
+            const tableTitle = document.getElementById('table-title');
+            const tableHead = document.getElementById('table-head');
+            const tableBody = document.getElementById('table-body');
+            const rowCount = document.getElementById('row-count');
+            const addRowBtn = document.getElementById('add-row-btn');
+            const deleteBtn = document.getElementById('delete-selected-btn');
+            const refreshBtn = document.getElementById('refresh-btn');
+            const prevPage = document.getElementById('prev-page');
+            const nextPage = document.getElementById('next-page');
+            const pageInfo = document.getElementById('page-info');
+            const sqlInput = document.getElementById('sql-input');
+            const runQueryBtn = document.getElementById('run-query-btn');
+            const queryResult = document.getElementById('query-result');
+
+            // Load tables
+            async function loadTables() {
+                try {
+                    const tables = await apiGet('/api/admin/tables');
+                    tablesList.innerHTML = tables.map(t =>
+                        `<div class="table-item" data-table="${t}">${t}</div>`
+                    ).join('');
+
+                    // Add click handlers
+                    tablesList.querySelectorAll('.table-item').forEach(item => {
+                        item.addEventListener('click', () => {
+                            tablesList.querySelectorAll('.table-item').forEach(i => i.classList.remove('active'));
+                            item.classList.add('active');
+                            currentPage = 0;
+                            loadTableData(item.dataset.table);
+                        });
+                    });
+                } catch (error) {
+                    tablesList.innerHTML = `<div class="muted">Error: ${error.message}</div>`;
+                }
+            }
+
+            // Load table data
+            async function loadTableData(tableName) {
+                currentTable = tableName;
+                selectedRowId = null;
+                deleteBtn.disabled = true;
+                addRowBtn.disabled = false;
+
+                try {
+                    const data = await apiGet(`/api/admin/tables/${tableName}?limit=${pageSize}&offset=${currentPage * pageSize}`);
+                    currentSchema = data.schema;
+                    currentRows = data.rows;
+                    totalRows = data.totalRows;
+
+                    tableTitle.textContent = `${tableName} (${totalRows} rows)`;
+                    rowCount.textContent = `${totalRows} rows`;
+
+                    // Render header
+                    const pkCol = currentSchema.find(c => c.pk === 1);
+                    tableHead.innerHTML = `<tr>
+            ${currentSchema.map(col => `<th>${col.name}${col.pk ? ' 🔑' : ''}</th>`).join('')}
+            <th>Actions</th>
+          </tr>`;
+
+                    // Render body
+                    renderTableBody();
+
+                    // Update pagination
+                    updatePagination();
+                } catch (error) {
+                    tableTitle.textContent = 'Error';
+                    tableBody.innerHTML = `<tr><td colspan="99" class="muted">${error.message}</td></tr>`;
+                }
+            }
+
+            function renderTableBody() {
+                const pkCol = currentSchema.find(c => c.pk === 1);
+                const pkName = pkCol ? pkCol.name : currentSchema[0]?.name || 'id';
+
+                tableBody.innerHTML = currentRows.map(row => {
+                    const rowId = row[pkName];
+                    return `<tr data-id="${rowId}" class="${selectedRowId === rowId ? 'selected' : ''}">
+            ${currentSchema.map(col => {
+                        let val = row[col.name];
+                        if (val === null) val = '<em class="muted">NULL</em>';
+                        else if (typeof val === 'string' && val.length > 50) val = val.substring(0, 47) + '...';
+                        return `<td title="${String(row[col.name] || '').replace(/"/g, '&quot;')}">${val}</td>`;
+                    }).join('')}
+            <td class="cell-actions">
+              <button class="btn-secondary btn-small edit-btn" data-id="${rowId}">Edit</button>
+              <button class="btn-danger btn-small delete-btn" data-id="${rowId}">Del</button>
+            </td>
+          </tr>`;
+                }).join('');
+
+                // Add row click handlers
+                tableBody.querySelectorAll('tr').forEach(tr => {
+                    tr.addEventListener('click', (e) => {
+                        if (e.target.tagName === 'BUTTON') return;
+                        selectedRowId = tr.dataset.id;
+                        tableBody.querySelectorAll('tr').forEach(r => r.classList.remove('selected'));
+                        tr.classList.add('selected');
+                        deleteBtn.disabled = false;
+                    });
+                });
+
+                // Add edit button handlers
+                tableBody.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', () => openEditModal(btn.dataset.id));
+                });
+
+                // Add delete button handlers
+                tableBody.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', () => deleteRow(btn.dataset.id));
+                });
+            }
+
+            function updatePagination() {
+                const totalPages = Math.ceil(totalRows / pageSize);
+                pageInfo.textContent = `Page ${currentPage + 1} of ${totalPages || 1}`;
+                prevPage.disabled = currentPage === 0;
+                nextPage.disabled = currentPage >= totalPages - 1;
+            }
+
+            prevPage.addEventListener('click', () => {
+                if (currentPage > 0) {
+                    currentPage--;
+                    loadTableData(currentTable);
+                }
+            });
+
+            nextPage.addEventListener('click', () => {
+                const totalPages = Math.ceil(totalRows / pageSize);
+                if (currentPage < totalPages - 1) {
+                    currentPage++;
+                    loadTableData(currentTable);
+                }
+            });
+
+            refreshBtn.addEventListener('click', () => {
+                if (currentTable) loadTableData(currentTable);
+            });
+
+            // Delete row
+            async function deleteRow(id) {
+                if (!confirm(`Delete row with ID "${id}"?`)) return;
+
+                try {
+                    await apiDelete(`/api/admin/tables/${currentTable}/${encodeURIComponent(id)}`);
+                    loadTableData(currentTable);
+                } catch (error) {
+                    alert('Delete failed: ' + error.message);
+                }
+            }
+
+            deleteBtn.addEventListener('click', () => {
+                if (selectedRowId) deleteRow(selectedRowId);
+            });
+
+            // Edit modal
+            function openEditModal(id) {
+                const row = currentRows.find(r => {
+                    const pkCol = currentSchema.find(c => c.pk === 1);
+                    const pkName = pkCol ? pkCol.name : currentSchema[0]?.name || 'id';
+                    return String(r[pkName]) === String(id);
+                });
+
+                if (!row) return;
+
+                const overlay = document.createElement('div');
+                overlay.className = 'modal-backdrop';
+                overlay.innerHTML = `
+          <div class="modal-card" role="dialog" aria-modal="true">
+            <div class="modal-header">
+              <div class="modal-title">Edit Row</div>
+              <button id="modal-close" class="btn-secondary btn-small">Close</button>
+            </div>
+            <div class="modal-body">
+              <form id="edit-form" class="modal-form">
+                ${currentSchema.map(col => `
+                  <div class="field">
+                    <label>${col.name}${col.pk ? ' (PK)' : ''}</label>
+                    <input name="${col.name}" value="${String(row[col.name] || '').replace(/"/g, '&quot;')}" ${col.pk ? 'readonly' : ''} />
+                  </div>
+                `).join('')}
+                <div class="actions">
+                  <button type="submit">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        `;
+
+                document.body.appendChild(overlay);
+
+                overlay.querySelector('#modal-close').addEventListener('click', () => {
+                    document.body.removeChild(overlay);
+                });
+
+                overlay.querySelector('#edit-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.target);
+                    const updates = {};
+                    currentSchema.forEach(col => {
+                        if (!col.pk) {
+                            updates[col.name] = formData.get(col.name);
+                        }
+                    });
+
+                    try {
+                        await apiPut(`/api/admin/tables/${currentTable}/${encodeURIComponent(id)}`, updates);
+                        document.body.removeChild(overlay);
+                        loadTableData(currentTable);
+                    } catch (error) {
+                        alert('Update failed: ' + error.message);
+                    }
+                });
+            }
+
+            // Add row modal
+            addRowBtn.addEventListener('click', () => {
+                if (!currentTable) return;
+
+                const overlay = document.createElement('div');
+                overlay.className = 'modal-backdrop';
+                overlay.innerHTML = `
+          <div class="modal-card" role="dialog" aria-modal="true">
+            <div class="modal-header">
+              <div class="modal-title">Add New Row</div>
+              <button id="modal-close" class="btn-secondary btn-small">Close</button>
+            </div>
+            <div class="modal-body">
+              <form id="add-form" class="modal-form">
+                ${currentSchema.map(col => `
+                  <div class="field">
+                    <label>${col.name}${col.pk ? ' (PK - leave empty for auto)' : ''}</label>
+                    <input name="${col.name}" placeholder="${col.type || 'TEXT'}" />
+                  </div>
+                `).join('')}
+                <div class="actions">
+                  <button type="submit">Add Row</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        `;
+
+                document.body.appendChild(overlay);
+
+                overlay.querySelector('#modal-close').addEventListener('click', () => {
+                    document.body.removeChild(overlay);
+                });
+
+                overlay.querySelector('#add-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.target);
+                    const data = {};
+                    currentSchema.forEach(col => {
+                        const val = formData.get(col.name);
+                        if (val !== '') {
+                            data[col.name] = val;
+                        }
+                    });
+
+                    try {
+                        await apiPost(`/api/admin/tables/${currentTable}`, data);
+                        document.body.removeChild(overlay);
+                        loadTableData(currentTable);
+                    } catch (error) {
+                        alert('Insert failed: ' + error.message);
+                    }
+                });
+            });
+
+            // Run SQL query
+            runQueryBtn.addEventListener('click', async () => {
+                const sql = sqlInput.value.trim();
+                if (!sql) return;
+
+                queryResult.style.display = 'block';
+                queryResult.textContent = 'Running...';
+
+                try {
+                    const result = await apiPost('/api/admin/query', { sql });
+
+                    if (result.rows) {
+                        queryResult.textContent = JSON.stringify(result.rows, null, 2);
+                    } else {
+                        queryResult.textContent = result.message || JSON.stringify(result, null, 2);
+                    }
+
+                    // Refresh current table if it was modified
+                    if (currentTable) {
+                        setTimeout(() => loadTableData(currentTable), 500);
+                    }
+                } catch (error) {
+                    queryResult.textContent = 'Error: ' + error.message;
+                }
+            });
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                localStorage.removeItem('authUser');
+                window.location.href = '/';
+            });
+
+            // Initial load
+            await loadTables();
+        });
+
+        // API helper for DELETE
+        async function apiDelete(path) {
+            const raw = localStorage.getItem('authUser');
+            const headers = raw ? { 'X-User': JSON.parse(raw).username, 'X-Role': JSON.parse(raw).role } : {};
+            const res = await fetch(path, { method: 'DELETE', headers });
+            if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || 'Request failed');
+            return res.json();
+        }
+    </script>
+</body>
+
+</html>

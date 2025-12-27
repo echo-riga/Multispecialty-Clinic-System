@@ -1,0 +1,2338 @@
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f8fafc;
+  --card: #ffffff;
+  --card-alt: #f1f5f9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --avatar: #e0f2fe;
+  --avatar-border: #bae6fd;
+  --primary: #0ea5e9;
+  --primary-hover: #0284c7;
+  --primary-strong: #0284c7;
+  --primary-soft: rgba(14, 165, 233, 0.1);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #06b6d4;
+  --shadow-elevated: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.1), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(239, 68, 68, 0.08), transparent 50%),
+    radial-gradient(circle at 90% 70%, rgba(34, 197, 94, 0.08), transparent 45%);
+  opacity: 0.6;
+  z-index: -2;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.container.wide {
+  max-width: none;
+  width: 100%;
+}
+
+.topbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.topbar h1 .title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar h1 .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--avatar);
+  color: var(--primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  border: 1px solid var(--avatar-border);
+}
+
+.topbar h1 .avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--avatar-border);
+}
+
+.topbar h1 .who-name {
+  font-weight: 700;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.who {
+  color: var(--muted);
+}
+
+.topbar .who {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar .who .avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--avatar);
+  color: var(--primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid var(--avatar-border);
+}
+
+.topbar .who .who-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--shadow-elevated);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(248, 113, 113, 0.12), rgba(34, 197, 94, 0.12));
+  opacity: 0;
+  transition: opacity 180ms ease;
+  z-index: 0;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Modern info card */
+.info-card {
+  overflow: hidden;
+}
+
+.info-card .pi-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.info-card .avatar-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--avatar);
+  color: var(--primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  border: 1px solid var(--avatar-border);
+}
+
+.info-card .pi-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card .pi-title .name {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.info-card .pi-title .sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Modernized info grid */
+.info-grid.modern {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+
+@media (max-width: 720px) {
+  .info-grid.modern {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-grid.modern .info-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-grid.modern .info-item:last-child {
+  border-bottom: 0;
+}
+
+.info-grid.modern .icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--bg-soft);
+  color: var(--primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+
+.info-grid.modern .content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.info-grid.modern .content .info-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.info-grid.modern .content .info-value {
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-word;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 0;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 140ms ease, box-shadow 140ms ease, transform 60ms ease;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.25);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  background: var(--bg-soft);
+  color: #64748b;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button:disabled:hover {
+  background: var(--bg-soft);
+}
+
+button:disabled:active {
+  transform: none;
+}
+
+ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+/* Modern enhancements */
+.card+.card {
+  margin-top: 12px;
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.list .item:last-child {
+  border-bottom: 0;
+}
+
+.list .item .left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.list .item .left .primary {
+  font-weight: 600;
+}
+
+.list .item .left .meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.list .item .right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions-inline {
+  display: flex;
+  gap: 6px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+li.done span {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.badge.success {
+  background: rgba(34, 197, 94, 0.18);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.badge.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.badge.info {
+  background: rgba(6, 182, 212, 0.2);
+  color: #06b6d4;
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.badge.danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.55);
+}
+
+.badge.neutral {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  border-color: rgba(14, 165, 233, 0.4);
+}
+
+/* Buttons */
+.btn-small {
+  padding: 8px 12px;
+}
+
+.btn-secondary {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg);
+}
+
+.btn-secondary:disabled {
+  background: var(--bg-soft);
+  color: #94a3b8;
+  border-color: var(--border);
+  cursor: not-allowed;
+}
+
+/* Button semantic variants */
+.btn-success {
+  background: #22c55e;
+}
+
+.btn-success:hover {
+  background: #16a34a;
+}
+
+.btn-warning {
+  background: #f59e0b;
+}
+
+.btn-warning:hover {
+  background: #d97706;
+}
+
+.btn-danger {
+  background: #ef4444;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+.btn-info {
+  background: var(--primary);
+}
+
+.btn-info:hover {
+  background: var(--primary-hover);
+}
+
+/* Inputs */
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+input,
+select {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  background: var(--card-alt);
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+textarea {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+}
+
+/* Modern role dropdown */
+.role-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 36px 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%2364758b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+  min-width: 160px;
+}
+
+.role-select:hover {
+  border-color: #b8c7e1;
+}
+
+.role-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.18);
+}
+
+.role-select:disabled {
+  background-color: var(--bg-soft);
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+/* Custom role dropdown button styled like a select */
+.role-dropdown {
+  position: relative;
+}
+
+.role-dropdown .role-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 36px 10px 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%2364758b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  min-width: 120px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.role-dropdown .role-button:hover {
+  border-color: #b8c7e1;
+}
+
+.role-dropdown .role-button:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.18);
+}
+
+/* Make diagnosis notes textarea not resizable */
+#diag-notes {
+  resize: none;
+}
+
+/* Custom dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: fixed;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 4px;
+  padding: 4px 0;
+  z-index: 9999;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.15);
+  min-width: 120px;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dropdown-menu {
+  text-align: left;
+}
+
+.dropdown-menu li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  margin: 2px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  line-height: 1.25;
+  transition: background-color 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.dropdown-menu li:hover,
+.dropdown-menu li.active {
+  background: var(--bg-soft);
+}
+
+.dropdown-menu li:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.35) inset;
+}
+
+.dropdown-menu li .icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-strong);
+  border-radius: 8px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+}
+
+.dropdown-menu li .label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-menu li .desc {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-menu li .kbd {
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 8px;
+}
+
+.dropdown-menu .section-title {
+  padding: 6px 12px;
+  margin: 2px 6px 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Time popover */
+.time-popover {
+  position: fixed;
+  z-index: 9999;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 150px;
+}
+
+.time-popover .tp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.time-popover .tp-title {
+  font-weight: 700;
+}
+
+.time-popover .tp-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.time-popover .tp-col {
+  max-height: 220px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  background: var(--bg-soft);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.time-popover .tp-col::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.time-popover .tp-item {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.time-popover .tp-item:hover,
+.time-popover .tp-item.selected {
+  background: var(--bg-soft);
+}
+
+.time-popover .tp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Compact time input buttons inside schedule modals */
+#schedule-modal #sched-time-text {
+  width: 90px;
+  text-align: center;
+}
+
+#n-schedule-modal #n-sched-time-text {
+  width: 90px;
+  text-align: center;
+}
+
+/* Form layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.col-span-2 {
+  grid-column: 1 / -1;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.actions .who {
+  margin-left: 8px;
+}
+
+/* Inline form layout for single-row forms */
+.form-inline {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+}
+
+.form-inline .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.form-inline .field input,
+.form-inline .field select,
+.form-inline .field textarea {
+  width: auto;
+}
+
+.form-inline #create-patient {
+  min-width: 280px;
+}
+
+.form-inline #create-time-text {
+  min-width: 180px;
+}
+
+.form-inline .actions {
+  margin-left: auto;
+}
+
+/* Make patient field expand */
+.form-inline .field.field-patient {
+  flex: 1 1 auto;
+}
+
+.form-inline .field.field-patient .dropdown,
+.form-inline .field.field-patient input {
+  width: 100%;
+}
+
+/* Nurse Create Staff User: make fields consume available width */
+#nurse-add-staff.form-inline {
+  display: flex;
+  align-items: flex-end;
+}
+
+#nurse-add-staff.form-inline .field {
+  flex: 1 1 auto;
+}
+
+#nurse-add-staff.form-inline .field input,
+#nurse-add-staff.form-inline .field select,
+#nurse-add-staff.form-inline .field .dropdown,
+#nurse-add-staff.form-inline .field .dropdown input {
+  width: 100%;
+}
+
+/* Visually hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 1, 1);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Professional layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-grid>div {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.dashboard-grid>div .card.compact:last-child {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.card.compact {
+  padding: 16px;
+}
+
+.card.compact {
+  overflow: auto;
+}
+
+.card .subtle {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Ensure inputs take full width inside fields */
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+}
+
+.field .dropdown {
+  width: 100%;
+}
+
+/* Chat */
+.chat {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.chat-sidebar {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  height: 100%;
+  overflow: auto;
+}
+
+.chat-sidebar .item {
+  cursor: pointer;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-sidebar .item:last-child {
+  border-bottom: 0;
+}
+
+.chat-sidebar .item.active {
+  background: var(--bg-soft);
+}
+
+.chat-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-body {
+  height: 280px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--bg);
+}
+
+.chat-msg {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0;
+  align-items: flex-end;
+}
+
+.chat-msg .avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--avatar);
+  color: var(--primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid var(--avatar-border);
+}
+
+.chat-msg .bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  border-radius: 12px;
+  max-width: 100%;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: break-word;
+  display: inline-block;
+}
+
+.chat-msg>div:not(.avatar) {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}
+
+.chat-msg .meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.chat-msg.me {
+  justify-content: flex-end;
+}
+
+.chat-msg.me .avatar {
+  display: none;
+}
+
+.chat-msg.me .bubble {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+.chat-input input {
+  flex: 1;
+}
+
+/* Floating chat container (doctor dashboard) */
+.chat-float {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2500;
+  width: 640px;
+  max-width: 92vw;
+}
+
+@media (max-width: 600px) {
+  .chat-float {
+    right: 8px;
+    left: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+}
+
+/* Slightly taller chat body in floating window */
+.chat-float .chat-body {
+  height: 340px;
+}
+
+/* Floating chat open button */
+.chat-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2501;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: #ffffff;
+  border: 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.chat-fab:hover {
+  background: var(--primary-hover);
+}
+
+.chat-fab svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: currentColor;
+}
+
+/* Chat FAB notification badge */
+.chat-fab .notif-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--card);
+  line-height: 1;
+}
+
+.chat-fab.has-unread .notif-badge {
+  display: flex;
+}
+
+/* Widen floating chat on large displays */
+@media (min-width: 1600px) {
+  .chat-float {
+    width: 760px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .chat-float {
+    width: 860px;
+  }
+}
+
+/* Tabs */
+.tabs {
+  display: block;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.tab-link {
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 8px 8px 0 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-link:hover {
+  background: var(--bg-soft);
+}
+
+.tab-link.active {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-bottom-color: var(--card);
+}
+
+.tab-content {
+  padding-top: 4px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Make doctor tabs fill available height */
+.container.wide {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container.wide main {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#content.card {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#content.card {
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+#content.card::-webkit-scrollbar {
+  width: 10px;
+}
+
+#content.card::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+#content.card::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+#content.card::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Hide scrollbar in admin dashboard - apply to ALL elements including html and window */
+html.admin-page,
+html.admin-page *,
+html:has(body.admin),
+html:has(body.admin) *,
+body.admin,
+body.admin *,
+#content.card.admin-dashboard,
+#content.card.admin-dashboard *,
+main,
+main *,
+.container,
+.container *,
+.card,
+.card * {
+  scrollbar-width: none !important;
+  /* Firefox */
+  -ms-overflow-style: none !important;
+  /* IE and Edge */
+  overflow: -moz-scrollbars-none !important;
+  /* Old Firefox */
+}
+
+html.admin-page::-webkit-scrollbar,
+html.admin-page *::-webkit-scrollbar,
+html::-webkit-scrollbar,
+html:has(body.admin)::-webkit-scrollbar,
+html:has(body.admin) *::-webkit-scrollbar,
+body.admin::-webkit-scrollbar,
+body.admin *::-webkit-scrollbar,
+main::-webkit-scrollbar,
+main *::-webkit-scrollbar,
+.container::-webkit-scrollbar,
+.container *::-webkit-scrollbar,
+.card::-webkit-scrollbar,
+.card *::-webkit-scrollbar,
+#content.card.admin-dashboard::-webkit-scrollbar,
+#content.card.admin-dashboard *::-webkit-scrollbar {
+  display: none !important;
+  /* Chrome, Safari, Opera */
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  visibility: hidden !important;
+}
+
+body.admin::-webkit-scrollbar-track,
+body.admin *::-webkit-scrollbar-track,
+html:has(body.admin)::-webkit-scrollbar-track,
+html:has(body.admin) *::-webkit-scrollbar-track,
+#content.card.admin-dashboard::-webkit-scrollbar-track,
+#content.card.admin-dashboard *::-webkit-scrollbar-track {
+  display: none !important;
+  background: transparent !important;
+}
+
+body.admin::-webkit-scrollbar-thumb,
+body.admin *::-webkit-scrollbar-thumb,
+html:has(body.admin)::-webkit-scrollbar-thumb,
+html:has(body.admin) *::-webkit-scrollbar-thumb,
+#content.card.admin-dashboard::-webkit-scrollbar-thumb,
+#content.card.admin-dashboard *::-webkit-scrollbar-thumb {
+  display: none !important;
+  background: transparent !important;
+}
+
+#doctor-tabs.tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#doctor-tabs .tab-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make nurse tabs fill available height */
+#nurse-tabs.tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#nurse-tabs .tab-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Doctor Manage tab: make Create Patient card fill screen height without scroll */
+#doctor-tabs #tab-manage .patients-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#doctor-tabs #tab-manage .patients-grid>div {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#doctor-tabs #tab-manage .patients-grid>div:first-child .card.compact {
+  /* Let the card grow naturally with its content so buttons stay inside the border */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nurse Manage tab: make Create Patient card fill screen height */
+#nurse-tabs #tab-manage .patients-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#nurse-tabs #tab-manage .patients-grid>div {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#nurse-tabs #tab-manage .patients-grid>div:first-child .card.compact {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Schedule grid */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Calendar grid reused for doctor schedule */
+:root {
+  --doctor-schedule-height: 100%;
+}
+
+#doctor-tabs #tab-schedule .schedule-grid {
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-auto-rows: minmax(0, 1fr);
+  height: var(--doctor-schedule-height, 100%);
+}
+
+#doctor-tabs #tab-schedule .schedule-grid>div {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#doctor-tabs #tab-schedule .schedule-grid>div:first-child {
+  height: 100%;
+}
+
+#doctor-tabs #tab-schedule .schedule-grid>div:first-child .card.compact {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#doctor-tabs #tab-schedule #calendar {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
+
+#doctor-tabs #tab-schedule #cal-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto repeat(6, 1fr);
+  height: 100%;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  align-items: start;
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.cal .cal-grid .cal-day {
+  position: relative;
+}
+
+.cal .cal-grid .cal-day .cal-events {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.cal .cal-grid .cal-day .cal-count {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  border: 1px solid rgba(56, 189, 248, 0.6);
+  border-radius: 999px;
+  padding: 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Make calendar consume available height in schedule tab */
+#doctor-tabs #tab-schedule .schedule-grid,
+#nurse-tabs #tab-schedule .schedule-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: var(--doctor-schedule-height, 100%);
+}
+
+#doctor-tabs #tab-schedule .schedule-grid>div:first-child,
+#nurse-tabs #tab-schedule .schedule-grid>div:first-child {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+#doctor-tabs #tab-schedule .schedule-grid>div:first-child .card.compact,
+#nurse-tabs #tab-schedule .schedule-grid>div:first-child .card.compact {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#doctor-tabs #tab-schedule #calendar,
+#nurse-tabs #tab-schedule #calendar {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+}
+
+#doctor-tabs #tab-schedule #cal-grid,
+#nurse-tabs #tab-schedule #cal-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-auto-rows: minmax(0, 1fr);
+  height: 100%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.06);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+}
+
+.modal-card {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 32px 60px rgba(0, 0, 0, 0.2);
+  width: min(640px, 92vw);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.modal-card.narrow {
+  width: min(420px, 92vw);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--avatar);
+  color: var(--primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 1px solid var(--avatar-border);
+}
+
+.modal-title {
+  font-weight: 700;
+}
+
+.modal-body {
+  padding: 16px 20px;
+  display: grid;
+  gap: 12px;
+  max-height: 70vh;
+  overflow: visible;
+}
+
+.modal-body #modal-msg:empty {
+  display: none;
+}
+
+.modal-subtitle {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.modal-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.modal-icon.success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.modal-icon.error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.modal-icon.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.modal-icon.info {
+  background: rgba(14, 165, 233, 0.2);
+  color: #0ea5e9;
+  border-color: rgba(14, 165, 233, 0.45);
+}
+
+.modal-card.is-success {
+  border-top: 4px solid #16a34a;
+}
+
+.modal-card.is-error {
+  border-top: 4px solid #dc2626;
+}
+
+.modal-card.is-warning {
+  border-top: 4px solid #d97706;
+}
+
+.modal-card.is-info {
+  border-top: 4px solid #0ea5e9;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPop {
+  from {
+    transform: translateY(8px) scale(0.98);
+    opacity: 0.98;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .prefix {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--primary-strong);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.input-with-icon input {
+  padding-left: 34px;
+}
+
+.input-with-icon .prefix svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.field .hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field .error-text {
+  font-size: 12px;
+  color: #ef4444;
+}
+
+/* Ensure info grid icons render crisply */
+.info-grid.modern .icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.cal-weekday {
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-strong);
+  padding: 6px 0;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.cal-day {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  background: var(--card);
+  cursor: default;
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cal-day.selected {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+  background: var(--primary-soft);
+}
+
+.cal-day .date {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.cal-day .cal-events {
+  color: rgba(15, 23, 42, 0.75);
+}
+
+.cal-day.outside {
+  background: rgba(241, 245, 249, 0.65);
+  color: rgba(100, 116, 139, 0.4);
+  border-style: dashed;
+}
+
+.cal-title {
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+/* Patients grid */
+.patients-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .patients-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Large-screen responsive scaling */
+@media (min-width: 1366px) {
+  .container {
+    max-width: 1100px;
+  }
+
+  .topbar h1 {
+    font-size: 24px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .card h3 {
+    font-size: 17px;
+  }
+
+  label {
+    font-size: 15px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 15px;
+  }
+
+  button {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1240px;
+  }
+
+  .topbar h1 {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1360px;
+  }
+
+  .topbar h1 {
+    font-size: 28px;
+  }
+}
+
+/* Fluid content scaling for wide screens */
+@media (min-width: 1200px) {
+  .topbar h1 {
+    font-size: calc(22px + 0.6vw);
+  }
+
+  .card {
+    padding: clamp(16px, 1.2vw, 28px);
+  }
+
+  .card h3 {
+    font-size: calc(16px + 0.3vw);
+  }
+
+  label {
+    font-size: calc(14px + 0.25vw);
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: calc(14px + 0.25vw);
+    padding: clamp(8px, 0.7vw, 14px) clamp(10px, 0.8vw, 16px);
+  }
+
+  button {
+    font-size: calc(14px + 0.25vw);
+    padding: clamp(10px, 0.8vw, 16px) clamp(12px, 1vw, 20px);
+  }
+
+  .tab-link {
+    font-size: calc(14px + 0.25vw);
+    padding: clamp(10px, 0.8vw, 16px) clamp(12px, 1vw, 18px);
+  }
+
+  .list .item {
+    padding: clamp(10px, 0.9vw, 16px) 0;
+  }
+
+  .info-card .pi-title .name {
+    font-size: calc(18px + 0.3vw);
+  }
+
+  .info-card .pi-title .sub,
+  .list .item .left .meta,
+  .modal-subtitle {
+    font-size: calc(12px + 0.2vw);
+  }
+
+  .chat-msg .bubble {
+    font-size: calc(14px + 0.2vw);
+  }
+
+  .cal-grid {
+    gap: clamp(6px, 0.6vw, 12px);
+  }
+
+  .cal-day {
+    min-height: clamp(54px, 6vw, 110px);
+  }
+
+  .cal-day .date {
+    font-size: calc(12px + 0.25vw);
+  }
+}
+
+/* Scrollable area helper */
+.scroll-area {
+  max-height: 396px;
+  overflow: auto;
+}
+
+/* Patients list: show clickable cursor on patient items */
+/* Polished scrollbars inside cards and scrollable panels */
+.card .scroll-area,
+.card #patient-results,
+.card #nurse-patient-results,
+.card #assign-list,
+.card #diag-list,
+.card .chat-body,
+.modal-card .modal-body,
+.chat-sidebar {
+  scrollbar-width: thin;
+  /* Firefox */
+  scrollbar-color: #cbd5e1 transparent;
+  /* thumb track */
+  overscroll-behavior: contain;
+}
+
+.card .scroll-area::-webkit-scrollbar,
+.card #patient-results::-webkit-scrollbar,
+.card #nurse-patient-results::-webkit-scrollbar,
+.card #assign-list::-webkit-scrollbar,
+.card #diag-list::-webkit-scrollbar,
+.card .chat-body::-webkit-scrollbar,
+.modal-card .modal-body::-webkit-scrollbar,
+.chat-sidebar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.card .scroll-area::-webkit-scrollbar-track,
+.card #patient-results::-webkit-scrollbar-track,
+.card #nurse-patient-results::-webkit-scrollbar-track,
+.card #assign-list::-webkit-scrollbar-track,
+.card #diag-list::-webkit-scrollbar-track,
+.card .chat-body::-webkit-scrollbar-track,
+.modal-card .modal-body::-webkit-scrollbar-track,
+.chat-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+.card .scroll-area::-webkit-scrollbar-thumb,
+.card #patient-results::-webkit-scrollbar-thumb,
+.card #nurse-patient-results::-webkit-scrollbar-thumb,
+.card #assign-list::-webkit-scrollbar-thumb,
+.card #diag-list::-webkit-scrollbar-thumb,
+.card .chat-body::-webkit-scrollbar-thumb,
+.modal-card .modal-body::-webkit-scrollbar-thumb,
+.chat-sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  border: 3px solid transparent;
+  /* creates "pill" with gap */
+  background-clip: padding-box;
+}
+
+.card .scroll-area:hover::-webkit-scrollbar-thumb,
+.card #patient-results:hover::-webkit-scrollbar-thumb,
+.card #nurse-patient-results:hover::-webkit-scrollbar-thumb,
+.card #assign-list:hover::-webkit-scrollbar-thumb,
+.card #diag-list:hover::-webkit-scrollbar-thumb,
+.card .chat-body:hover::-webkit-scrollbar-thumb,
+.modal-card .modal-body:hover::-webkit-scrollbar-thumb,
+.chat-sidebar:hover::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+#patient-results .item {
+  cursor: pointer;
+}
+
+/* Nurse patients list clickable */
+#nurse-patient-results .item {
+  cursor: pointer;
+}
+
+/* Patients list: active/selected state */
+#patient-results .item.active {
+  background: var(--primary-soft);
+  border-left: 4px solid var(--primary);
+  padding-left: 8px;
+  border-radius: 8px;
+}
+
+/* Nurse patients list selected state */
+#nurse-patient-results .item.active {
+  background: var(--primary-soft);
+  border-left: 4px solid var(--primary);
+  padding-left: 8px;
+  border-radius: 8px;
+}
+
+/* Doctor Patients card should fill available height and scroll names when overflow */
+#tab-patients .patients-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#tab-patients .patients-grid>div {
+  min-height: 0;
+}
+
+#tab-patients .patients-grid>div:first-child .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#tab-patients #patient-results {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Nurse Assign Doctor card should fill available height and scroll list when overflow */
+#nurse-tabs #tab-patients .patients-grid>div {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+#nurse-tabs #tab-patients .patients-grid>div:nth-child(2)>.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#nurse-tabs #assign-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Chips for multi-diagnosis selection */
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip button {
+  background: transparent;
+  color: var(--primary-strong);
+  border: 0;
+  padding: 0 2px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.chip button:hover {
+  color: var(--primary);
+}
+
+/* Make diagnosis list items look clickable */
+#diag-list .item {
+  cursor: pointer;
+}
+
+#diag-list .item.active {
+  background: var(--primary-soft);
+  border-left: 4px solid var(--primary);
+  padding-left: 8px;
+  border-radius: 8px;
+}
+
+/* Past Diagnoses list in modal: make items look clickable */
+#pi-diag-list .item {
+  cursor: pointer;
+}
+
+#pi-diag-list .item:hover {
+  background: var(--bg-soft);
+}
+
+#pi-diag-list .item.active {
+  background: var(--primary-soft);
+  border-left: 4px solid var(--primary);
+  padding-left: 8px;
+  border-radius: 8px;
+}
+
+/* Doctor diagnoses: fill column height and scroll when overflow */
+#tab-patients .patients-grid>div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#tab-patients .patients-grid>div:nth-child(2) .card.compact:last-child {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: calc(100vh - 240px);
+  overflow: hidden;
+}
+
+#diag-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Universal admin scrollbar hiding - works even if classes aren't applied */
+body:has([id*="admin"]),
+body:has([class*="admin"]),
+[data-role="admin"],
+[data-role="admin"] * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+body:has([id*="admin"])::-webkit-scrollbar,
+body:has([class*="admin"])::-webkit-scrollbar,
+[data-role="admin"]::-webkit-scrollbar,
+[data-role="admin"] *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Dropzone for uploads (doctor modal) */
+.dropzone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.dropzone:hover {
+  background: var(--bg-soft);
+}
+
+.dropzone.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15) inset;
+}
+
+.dropzone .dz-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.dropzone #view-doc-upload {
+  margin-left: auto;
+}
+
+.dropzone #doc-upload {
+  margin-left: auto;
+}
+
+.dropzone .dz-title {
+  font-weight: 600;
+}
+
+.dropzone .dz-sub {
+  font-size: 12px;
+}
+
+.dropzone .dz-file {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* Toggle Switch */
+.toggle-switch-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch-wrapper:hover .toggle-switch-label {
+  color: var(--text-main);
+}
+
+.toggle-switch-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  /* Slate-300 */
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.toggle-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-switch input:checked+.slider {
+  background-color: var(--primary, #3b82f6);
+}
+
+.toggle-switch input:focus+.slider {
+  box-shadow: 0 0 1px var(--primary, #3b82f6);
+}
+
+.toggle-switch input:checked+.slider:before {
+  transform: translateX(20px);
+}

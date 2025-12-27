@@ -1,0 +1,661 @@
+body {
+  font-family: "Times New Roman", Times, "Trebuchet MS", serif;
+  width: 148mm;
+  /* A5 width */
+  height: auto;
+  min-height: 210mm;
+  /* A5 height */
+  margin: 0 auto;
+  padding: 3mm 6mm;
+  box-sizing: border-box;
+  background-color: white;
+  color: #222;
+  line-height: 1.2;
+  font-size: 9pt;
+  position: relative;
+  padding-bottom: 6mm;
+}
+
+/* Reset form elements to use body font */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* header -> PLP Clinic Logo */
+.clinic-header {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2mm;
+  padding-bottom: 1mm;
+  border-bottom: 2px solid #222;
+  /* Light gray border or line in top of personal information */
+}
+
+.clinic-header img {
+  max-width: 85mm;
+  height: auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2mm;
+  /* position: relative; */
+  /* padding-left: 125px; space for logo */
+}
+
+.header-logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: auto;
+  padding-left: 50px;
+  margin-top: 32px;
+}
+
+.header-title {
+  font-size: 18pt;
+  font-weight: bold;
+  margin-bottom: 2mm;
+  padding-left: 130px;
+  margin-top: 10px;
+}
+
+.header-sub {
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 5mm;
+  font-family: "Trebuchet MS", serif;
+  padding-left: 130px;
+}
+
+.header-sub2 {
+  font-size: 10pt;
+  font-weight: bold;
+  margin-bottom: 1mm;
+  font-family: "Trebuchet MS", serif;
+  padding-left: 130px;
+}
+
+.header-details {
+  font-size: 11pt;
+  margin-bottom: 1mm;
+}
+
+.header-hr {
+  border: none;
+  border-top: 3px solid #222;
+  margin: 5mm 0 2mm 0;
+}
+
+.date-row {
+  text-align: right;
+  font-size: 9pt;
+  margin-top: 2mm;
+  margin-bottom: 4mm;
+}
+
+.date-row label {
+  font-weight: bold;
+}
+
+.date-row input {
+  border: none;
+  border-bottom: 1px solid #222;
+  font-size: 9pt;
+  background: transparent;
+  width: 120px;
+  margin-left: 8px;
+  text-align: center;
+}
+
+/* Improve centering for WebKit date inputs */
+input[type="date"]::-webkit-datetime-edit {
+  text-align: center;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: center;
+}
+
+.cert-title {
+  text-align: center;
+  font-size: 12pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: 4mm;
+}
+
+.main-content {
+  font-size: 9pt;
+  margin-bottom: 2mm;
+  line-height: 1.4;
+}
+
+.input-line {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #222;
+  font-size: 9pt;
+  font-weight: bold;
+  background: transparent;
+  margin: 0 2px;
+  vertical-align: middle;
+  width: 100px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.input-long-line {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #222;
+  font-size: 9pt;
+  font-weight: bold;
+  background: transparent;
+  margin: 0 2px;
+  vertical-align: middle;
+  text-align: left;
+  padding-left: 5px;
+}
+
+#certify-name {
+  width: 100mm;
+}
+
+#certify-name,
+#certify-age,
+#certify-sex,
+#certify-address1,
+#certify-address2,
+#certify-datefrom,
+#certify-for {
+  margin-bottom: 1.5mm;
+}
+
+#certify-age {
+  width: 20mm;
+}
+
+#certify-sex {
+  width: 30mm;
+}
+
+#certify-name,
+#certify-age,
+#certify-sex {
+  text-align: center;
+}
+
+#certify-address1 {
+  text-align: center;
+}
+
+#certify-for {
+  text-align: left;
+}
+
+#certify-address1 {
+  width: 178mm;
+}
+
+#certify-for {
+  width: 175.5mm;
+}
+
+.section-label {
+  margin-top: 3mm;
+  margin-bottom: 2mm;
+  display: block;
+}
+
+#multiline {
+  width: 100%;
+  font-size: 12pt;
+  border: none;
+  border-bottom: 1px solid #222;
+  margin-bottom: 2mm;
+  background: transparent;
+  resize: none;
+}
+
+.assessment-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 9pt;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 2mm;
+  resize: none;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 2.0;
+  padding: 0;
+  padding-left: 5px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, transparent calc(2em - 1px), #222 calc(2em - 1px), #222 2em, transparent 2em),
+    linear-gradient(to bottom, transparent calc(4em - 1px), #222 calc(4em - 1px), #222 4em, transparent 4em);
+  background-repeat: no-repeat;
+}
+
+.diagnosis-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 9pt;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 2mm;
+  resize: none;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 2.0;
+  padding: 0;
+  padding-left: 5px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, transparent calc(2em - 1px), #222 calc(2em - 1px), #222 2em, transparent 2em),
+    linear-gradient(to bottom, transparent calc(4em - 1px), #222 calc(4em - 1px), #222 4em, transparent 4em);
+  background-repeat: no-repeat;
+}
+
+.recommendation-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 9pt;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 2mm;
+  resize: none;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  line-height: 2.0;
+  padding: 0;
+  padding-left: 5px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, transparent calc(2em - 1px), #222 calc(2em - 1px), #222 2em, transparent 2em),
+    linear-gradient(to bottom, transparent calc(4em - 1px), #222 calc(4em - 1px), #222 4em, transparent 4em),
+    linear-gradient(to bottom, transparent calc(6em - 1px), #222 calc(6em - 1px), #222 6em, transparent 6em);
+  background-repeat: no-repeat;
+}
+
+.statement {
+  text-align: center;
+  font-size: 8pt;
+  margin-top: 2mm;
+  margin-bottom: 2mm;
+  line-height: 1.3;
+}
+
+.footer-section {
+  position: absolute;
+  bottom: 25mm;
+  right: 20mm;
+  width: 80mm;
+  font-size: 13pt;
+  text-align: right;
+}
+
+.footer-note {
+  font-weight: bold;
+  position: absolute;
+  text-align: left;
+  bottom: 25mm;
+  left: 6mm;
+  font-size: 8pt;
+}
+
+.editable-line {
+  display: inline-block;
+  border-bottom: 1px solid #666;
+  min-width: 200px;
+  /* para may space kahit walang laman */
+  padding: 2px 4px;
+  font-size: 13pt;
+  margin-left: 5px;
+  outline: none;
+  background: transparent;
+
+  /* ensure typing starts at the left */
+  text-align: left;
+}
+
+.certificate-footer {
+  position: absolute;
+  bottom: 30mm;
+  right: 10mm;
+  font-size: 11pt;
+  text-align: right;
+}
+
+.doctor-name {
+  font-weight: bold;
+  font-size: 13pt;
+  color: #0b3d5c;
+  /* dark teal/blue for professionalism */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.license {
+  font-size: 11pt;
+  color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer {
+  background-color: #c7b26e;
+  /* soft gold */
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 10.5pt;
+  font-family: Arial, sans-serif;
+  margin: 20px -15mm 0 -15mm;
+  width: calc(100% + 30mm);
+  box-sizing: border-box;
+}
+
+/* Add Another Medication and Print Prescription Button */
+#button-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 3mm;
+}
+
+.button-group {
+  display: flex;
+  gap: 3mm;
+  margin-top: 3mm;
+}
+
+button {
+  padding: 1.5mm 3mm;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 1mm;
+  cursor: pointer;
+  font-size: 4.5mm;
+}
+
+button.clear-btn {
+  background-color: #f44336;
+}
+
+/* Hover effect */
+button.clear-btn:hover {
+  background-color: #d32f2f;
+  /* darker red */
+}
+
+/* Active (when clicked) */
+button.clear-btn:active {
+  background-color: #b71c1c;
+  /* even darker red */
+}
+
+button.print {
+  background-color: #2196f3;
+}
+
+/* Hover effect */
+button.print:hover {
+  background-color: #1976d2;
+  /* darker blue */
+}
+
+/* Active (when clicked) */
+button.print:active {
+  background-color: #0d47a1;
+  /* even darker blue */
+}
+
+@media print {
+  @page {
+    size: A5;
+    margin: 0;
+
+    @top-center {
+      content: "";
+    }
+
+    @top-left {
+      content: "";
+    }
+
+    @top-right {
+      content: "";
+    }
+
+    @bottom-center {
+      content: "";
+    }
+
+    @bottom-left {
+      content: "";
+    }
+
+    @bottom-right {
+      content: "";
+    }
+  }
+
+  html,
+  body {
+    width: 148mm;
+    height: 160mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative;
+    background: white;
+  }
+
+  body {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 3mm 8mm 5mm 8mm !important;
+    color: #222;
+    font-size: 9pt;
+  }
+
+  /* Reset form elements to use body font in print */
+  input,
+  textarea,
+  select {
+    font-family: inherit !important;
+    color: inherit !important;
+  }
+
+  .clinic-header img {
+    max-width: 85mm;
+    height: auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-top: -10mm;
+    margin-bottom: 3mm;
+  }
+
+  .header-logo {
+    position: absolute;
+    width: 120px;
+    margin-top: 0;
+    padding-left: 20mm;
+  }
+
+  .header-title {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 2mm;
+    padding-left: 30mm;
+    margin-top: 10px;
+  }
+
+  .header-sub {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-bottom: 2mm;
+    font-family: "Trebuchet MS", serif;
+    padding-left: 30mm;
+  }
+
+  .header-sub2 {
+    font-size: 10t;
+    font-weight: bold;
+    margin-bottom: 1mm;
+    font-family: "Trebuchet MS", serif;
+    padding-left: 130px;
+  }
+
+  #certify-name {
+    width: 100mm;
+  }
+
+  #certify-address1 {
+    width: 128mm;
+  }
+
+  #certify-for {
+    width: 128mm;
+  }
+
+  #multiline {
+    width: 128mm;
+  }
+
+  .assessment-textarea {
+    width: 128mm;
+    font: inherit;
+    font-size: 9pt !important;
+    font-weight: bold !important;
+    line-height: 2.0 !important;
+    padding-left: 5px;
+    background: linear-gradient(to bottom, transparent calc(2em - 1px), #222 calc(2em - 1px), #222 2em, transparent 2em),
+      linear-gradient(to bottom, transparent calc(4em - 1px), #222 calc(4em - 1px), #222 4em, transparent 4em) !important;
+    background-repeat: no-repeat !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .diagnosis-textarea {
+    width: 128mm;
+    font: inherit;
+    font-size: 9pt !important;
+    font-weight: bold !important;
+    line-height: 2.0 !important;
+    padding-left: 5px;
+    background: linear-gradient(to bottom, transparent calc(2em - 1px), #222 calc(2em - 1px), #222 2em, transparent 2em),
+      linear-gradient(to bottom, transparent calc(4em - 1px), #222 calc(4em - 1px), #222 4em, transparent 4em) !important;
+    background-repeat: no-repeat !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .recommendation-textarea {
+    width: 128mm;
+    font: inherit;
+    font-size: 9pt !important;
+    font-weight: bold !important;
+    line-height: 2.0 !important;
+    padding-left: 5px;
+    background: linear-gradient(to bottom, transparent calc(2em - 1px), #222 calc(2em - 1px), #222 2em, transparent 2em),
+      linear-gradient(to bottom, transparent calc(4em - 1px), #222 calc(4em - 1px), #222 4em, transparent 4em),
+      linear-gradient(to bottom, transparent calc(6em - 1px), #222 calc(6em - 1px), #222 6em, transparent 6em) !important;
+    background-repeat: no-repeat !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .statement {
+    margin-left: 0;
+    margin-top: -5mm;
+    font-size: 8pt;
+  }
+
+  .certificate-footer {
+    position: fixed !important;
+    bottom: 25mm;
+    right: 20mm;
+    text-align: right;
+    font-size: 9pt;
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .doctor-name {
+    font-weight: bold;
+    font-size: 12pt;
+    color: #0b3d5c;
+    /* dark teal/blue for professionalism */
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .license {
+    font-size: 10pt;
+    color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .footer-section,
+  .footer-note,
+  .footer {
+    position: fixed;
+  }
+
+  .footer-note {
+    bottom: 25mm;
+    left: 25mm;
+    font-size: 10pt;
+  }
+
+  .footer {
+    -webkit-print-color-adjust: exact;
+    /* Chrome, Safari */
+    print-color-adjust: exact;
+    /* Firefox */
+    background-color: #c7b26e !important;
+    color: white !important;
+    font-size: 8pt;
+    position: relative !important;
+    bottom: auto;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 0;
+    padding: 5px 10mm;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+
+
+  button {
+    display: none;
+  }
+
+  #certify-name,
+  #certify-age,
+  #certify-sex,
+  #certify-address1,
+  #certify-address2,
+  #certify-datefrom,
+  #certify-for,
+  .input-line,
+  .input-long-line {
+    font-size: 9pt !important;
+  }
+}

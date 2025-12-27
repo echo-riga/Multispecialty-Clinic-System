@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doc Dizon - Medical Prescription</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="Doc Dizon - Medical Prescription.css" />
+  </head>
+  <body>
+    <!-- DOCDIZON Logo -->
+    <div class="clinic-header">
+      <img src=".\Preclaro-Dizon-Logo.png" alt="CLINIC-LOGO" />
+      <span style="Font-size: 3mm; display: block; text-align: center; white-space: nowrap;"> Monday to Friday 5PM-8PM  │ Saturday 9AM-2PM  │ Sunday 9AM-2PM</span>
+    </div>
+
+    <!-- Personal Information -->
+    <div class="form-section">
+      <div class="patient-info">
+        <input type="text" id="name" placeholder="Name" />
+        <input type="number" id="age" placeholder="Age" />
+        <select id="sex">
+          <option value="" disabled selected>Sex</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="patient-info">
+        <input type="text" id="address" placeholder="Address" />
+        <input type="date" id="date" placeholder="Date" />
+      </div>
+    </div>
+
+    <!-- Table -->
+    <table>
+      <tr>
+       <th rowspan="2" id="medicine&dose" style="border-top-color: white !important; border-left-color: white !important;">
+        <div class="rx-symbol">
+            <img src="./rx-logo.png" alt="Rx-Symbol" />
+          </div>
+       </th>  
+        <th rowspan="2" id="quantity-header" class="meal-header">Qty</th>
+        <th colspan="2" id="breakfast" class="meal-header">BREAKFAST</th>
+        <th colspan="2" id="lunch" class="meal-header">LUNCH</th>
+        <th colspan="2" id="dinner" class="meal-header">DINNER</th>
+        <th id="bedtime">BEDTIME</th>
+      </tr>
+
+      <tr>
+        <th class="before">BEFORE</th>
+        <th class="after">AFTER</th>
+        <th class="before">BEFORE</th>
+        <th class="after">AFTER</th>
+        <th class="before">BEFORE</th>
+        <th class="after">AFTER</th>
+        <th class="before">BEFORE</th>
+      </tr>
+
+      <tr class="row">
+        <td>
+          <div class="cell-content">
+            <span id="number">1.</span>
+            <div class="medication-type">
+              <input id="medication-1" type="text" />
+            </div>
+          </div>
+        </td>
+        <td rowspan="2" class="quantity-cell">
+          <input
+            type="number"
+            id="quantity-1"
+            name="quantity"
+            min="1"
+            max="100"
+            value=""
+          />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-1-1" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-1-2" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-1-3" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-1-4" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-1-5" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-1-6" />
+        </td>
+        <td class="bedtime-checkbox">
+          <input type="checkbox" id="checkbox-1-7" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td><input id="medication-1-2" type="text" class="note-input" /></td>
+        <td colspan="7">
+          <input id="medication-1-3" type="text" class="meal-note-input" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td>
+          <div class="cell-content">
+            <span id="number">2.</span>
+            <div class="medication-type">
+              <input id="medication-2" type="text" />
+            </div>
+          </div>
+        </td>
+        <td rowspan="2" class="quantity-cell">
+          <input
+            type="number"
+            id="quantity-2"
+            name="quantity"
+            min="1"
+            max="100"
+            value=""
+          />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-2-1" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-2-2" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-2-3" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-2-4" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-2-5" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-2-6" />
+        </td>
+        <td class="bedtime-checkbox">
+          <input type="checkbox" id="checkbox-2-7" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td><input id="medication-2-2" type="text" class="note-input" /></td>
+        <td colspan="7">
+          <input id="medication-2-3" type="text" class="meal-note-input" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td>
+          <div class="cell-content">
+            <span id="number">3.</span>
+            <div class="medication-type">
+              <input id="medication-3" type="text" />
+            </div>
+          </div>
+        </td>
+        <td rowspan="2" class="quantity-cell">
+          <input
+            type="number"
+            id="quantity-3"
+            name="quantity"
+            min="1"
+            max="100"
+            value=""
+          />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-3-1" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-3-2" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-3-3" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-3-4" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-3-5" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-3-6" />
+        </td>
+        <td class="bedtime-checkbox">
+          <input type="checkbox" id="checkbox-3-7" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td><input id="medication-3-2" type="text" class="note-input" /></td>
+        <td colspan="7">
+          <input id="medication-3-3" type="text" class="meal-note-input" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td>
+          <div class="cell-content">
+            <span id="number">4.</span>
+            <div class="medication-type">
+              <input id="medication-4" type="text" />
+            </div>
+          </div>
+        </td>
+        <td rowspan="2" class="quantity-cell">
+          <input
+            type="number"
+            id="quantity-4"
+            name="quantity"
+            min="1"
+            max="100"
+            value=""
+          />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-4-1" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-4-2" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-4-3" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-4-4" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-4-5" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-4-6" />
+        </td>
+        <td class="bedtime-checkbox">
+          <input type="checkbox" id="checkbox-4-7" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td><input id="medication-4-2" type="text" class="note-input" /></td>
+        <td colspan="7">
+          <input id="medication-4-3" type="text" class="meal-note-input" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td>
+          <div class="cell-content">
+            <span id="number">5.</span>
+            <div class="medication-type">
+              <input id="medication-5" type="text" />
+            </div>
+          </div>
+        </td>
+        <td rowspan="2" class="quantity-cell">
+          <input
+            type="number"
+            id="quantity-5"
+            name="quantity"
+            min="1"
+            max="100"
+            value=""
+          />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-5-1" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-5-2" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-5-3" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-5-4" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-5-5" />
+        </td>
+        <td class="checkbox-cell">
+          <input type="checkbox" id="checkbox-5-6" />
+        </td>
+        <td class="bedtime-checkbox">
+          <input type="checkbox" id="checkbox-5-7" />
+        </td>
+      </tr>
+
+      <tr class="row">
+        <td><input id="medication-5-2" type="text" class="note-input" /></td>
+        <td colspan="7">
+          <input id="medication-5-3" type="text" class="meal-note-input" />
+        </td>
+      </tr>
+    </table>
+
+    <!-- Add Another Medication and Print Prescription Button -->
+    <div id="button-container">
+      <button class="clear-btn" onclick="clearBtn()">Clear All</button>
+      <button class="print" onclick="printPrescription()">
+        Print Prescription
+      </button>
+    </div>
+
+    <div style="height: 12mm"></div>
+
+    <!-- Footer -> Doctor Information -->
+    <div class="footer-section" id="main-footer">
+      <div class="certificate-container">
+        <div class="follow-up">
+          <div class="follow-up-date">
+            <label for="follow-up">Follow up on:</label>
+            <input type="date" id="follow-up" />
+          </div>
+        </div>
+
+        <div class="certificate-footer">
+          <p class="doctor-name" id="doctor-name-2">
+            Irish Jasmine Preclaro - Dizon MD, FPSO - HNS
+          </p>
+          <p class="license" id="doctor-license-2">License No. 0116421</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        Unit K, No. 8 A. Mabini St. Brgy. Kapasigan, Pasig City | 0927 411 6706
+        | preclarodizonclinic@gmail.com
+      </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="Doc Dizon - Medical Prescription.js"></script>
+  </body>
+</html>

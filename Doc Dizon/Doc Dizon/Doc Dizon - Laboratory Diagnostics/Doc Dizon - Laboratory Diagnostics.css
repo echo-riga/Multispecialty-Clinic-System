@@ -1,0 +1,608 @@
+body {
+  font-family: "Arial", sans-serif;
+  width: 148mm;
+  /* A5 width */
+  height: auto;
+  min-height: 210mm;
+  /* A5 height */
+  margin: 0 auto;
+  padding: 4mm 7mm;
+  box-sizing: border-box;
+  background-color: white;
+  color: #333;
+  line-height: 1.3;
+  font-size: 2.5mm;
+  position: relative;
+  padding-bottom: 15mm;
+}
+
+/* @media print {
+  .certificate-footer,
+  .footer {
+    display: block !important;
+  }
+} */
+
+/* header -> PLP Clinic Logo */
+.clinic-header {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2mm;
+  padding-bottom: 1mm;
+  border-bottom: 2px solid #222;
+  /* Light gray border or line in top of personal information */
+}
+
+.clinic-header img {
+  max-width: 85mm;
+  height: auto;
+}
+
+/* personal information */
+.form-section {
+  margin-bottom: 5mm;
+}
+
+.patient-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3mm;
+  margin-bottom: 5mm;
+}
+
+.patient-info input,
+.patient-info select {
+  flex: 1;
+  min-width: 25mm;
+  padding: 1.5mm;
+  border: none;
+  border-bottom: 0.3mm solid #ddd;
+  font-size: 5mm;
+  background-color: transparent;
+}
+
+#name {
+  flex: 3;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#age {
+  flex: 0.5;
+  min-width: 12mm;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#sex {
+  flex: 0.7;
+  min-width: 15mm;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#address {
+  flex: 2;
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+#date {
+  outline: none;
+  /* alisin yung blue highlight kapag naka-focus */
+  background: transparent;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 3.5mm;
+  text-transform: uppercase;
+  margin: 3mm 0 2mm;
+  color: #333;
+  border-bottom: 0.3mm solid #e0e0e0;
+  padding-bottom: 1mm;
+}
+
+.checklist {
+  column-count: 2;
+  column-gap: 8mm;
+  margin-bottom: 8mm;
+}
+
+.category {
+  break-inside: avoid;
+  margin-bottom: 4mm;
+  padding: 3mm;
+  border: 0.2mm solid #e0e0e0;
+  border-radius: 1mm;
+  background-color: #fafafa;
+  box-shadow: 0 1mm 2mm rgba(0, 0, 0, 0.05);
+}
+
+.category h3 {
+  font-size: 3.2mm;
+  font-weight: 700;
+  margin: 1mm 0 2mm;
+  color: #333;
+  border-bottom: 0.2mm solid #ddd;
+  padding-bottom: 1mm;
+  text-transform: uppercase;
+  letter-spacing: 0.5mm;
+}
+
+/* medication form background */
+input,
+select {
+  padding: 1.5mm;
+  border: none;
+  border-bottom: 0.2mm solid #ddd;
+  width: 100%;
+  font-size: 3.2mm;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.multi-select {
+  width: 100%;
+  font-size: 3.2mm;
+  padding: 1.5mm;
+  border: 0.2mm solid #ddd;
+  border-radius: 1mm;
+  background-color: white;
+  height: auto;
+  min-height: 15mm;
+  max-height: 25mm;
+  overflow-y: auto;
+  min-width: 80mm;
+}
+
+.multi-select option {
+  padding: 1mm 1.5mm;
+  border-bottom: 0.1mm dashed #eee;
+}
+
+.multi-select option:checked {
+  background-color: #4caf50;
+  color: white;
+}
+
+.others input {
+  width: 100%;
+  padding: 1.5mm;
+  border: none;
+  border-bottom: 0.3mm solid #ddd;
+  font-size: 3.2mm;
+  box-sizing: border-box;
+  background-color: transparent;
+  border-radius: 0.5mm;
+}
+
+.others input:focus {
+  outline: none;
+  border-bottom-color: #4caf50;
+}
+
+/* Footer -> Doctor Information */
+.footer-section {
+  /* display: flex; */
+  justify-content: flex-end;
+  margin-top: 5mm;
+  align-items: flex-end;
+  padding-top: 3mm;
+  /* Light gray border or line in top of doctor information */
+  position: absolute;
+  bottom: 5mm;
+  width: calc(100% - 20mm);
+}
+
+.certificate-container {
+  display: flex;
+  justify-content: space-between;
+  /* pushes left & right */
+  align-items: flex-end;
+  /* align them at the bottom */
+  margin-top: 20mm;
+  /* adjust spacing as needed */
+  font-family: Arial, sans-serif;
+}
+
+/* follow-up styles */
+.follow-up {
+  flex: 0 0 auto;
+  width: 35%;
+}
+
+.follow-up-date {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+
+.follow-up-date label {
+  white-space: nowrap;
+  font-size: 3.5mm;
+  color: #666;
+}
+
+.follow-up-date input {
+  flex: 1;
+  min-width: 30mm;
+  font-size: 3.5mm;
+}
+
+/* Follow-up section for lab form */
+.follow-up-section {
+  margin: 5mm 0;
+  padding: 3mm 0;
+  border-top: 1px solid #ddd;
+}
+
+.follow-up-section .follow-up-date {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+}
+
+.follow-up-section .follow-up-date label {
+  white-space: nowrap;
+  font-size: 4mm;
+  color: #333;
+  font-weight: normal;
+}
+
+.follow-up-section .follow-up-date input {
+  flex: 1;
+  min-width: 40mm;
+  font-size: 4mm;
+  padding: 2mm;
+  border: 1px solid #ddd;
+  border-radius: 2mm;
+  background-color: white;
+}
+
+.doctor-name {
+  font-weight: bold;
+  font-size: 12pt;
+  color: #0b3d5c;
+  /* dark teal/blue for professionalism */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.license {
+  font-size: 11pt;
+  color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.certificate-footer {
+  position: absolute;
+  bottom: 15mm;
+  right: 0mm;
+  font-size: 13pt;
+  text-align: center;
+}
+
+.footer {
+  background-color: #c7b26e;
+  /* soft gold */
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 10.5pt;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 3mm;
+  margin-top: 3mm;
+}
+
+button {
+  padding: 1.5mm 3mm;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 1mm;
+  cursor: pointer;
+  font-size: 4.5mm;
+}
+
+button.clear-btn {
+  background-color: #f44336;
+}
+
+/* Add Another Medication and Print Prescription Button */
+#button-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 3mm;
+}
+
+/* Hover effect */
+button.clear-btn:hover {
+  background-color: #d32f2f;
+  /* darker red */
+}
+
+/* Active (when clicked) */
+button.clear-btn:active {
+  background-color: #b71c1c;
+  /* even darker red */
+}
+
+button.print {
+  background-color: #2196f3;
+}
+
+/* Hover effect */
+button.print:hover {
+  background-color: #1976d2;
+  /* darker blue */
+}
+
+/* Active (when clicked) */
+button.print:active {
+  background-color: #0d47a1;
+  /* even darker blue */
+}
+
+@media print {
+
+  /* Hide the static section-title above the header in print */
+  body>.section-title {
+    display: none !important;
+  }
+
+  @page {
+    size: A5;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 148mm;
+    height: 209mm !important;
+    overflow: hidden !important;
+    position: relative;
+    background-color: white;
+  }
+
+  body {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 4mm 10mm 0 10mm !important;
+    color: #222;
+  }
+
+  #button-container,
+  button {
+    display: none !important;
+  }
+
+  .clinic-header img {
+    max-width: 85mm;
+    height: auto;
+  }
+
+  #name,
+  #age,
+  #sex,
+  #address,
+  #date {
+    font-size: 4.2mm !important;
+  }
+
+  /* Hide UI-only inputs on print */
+  .multi-select,
+  .others input {
+    display: none !important;
+  }
+
+  .category {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    background-color: white !important;
+    border: 0.2mm solid #eee !important;
+    margin-top: 5mm;
+    margin-bottom: 1.5mm !important;
+    padding: 1mm !important;
+  }
+
+  .category h3 {
+    font-size: 5mm;
+    margin: 2mm 0 3mm;
+  }
+
+  .category:first-of-type {
+    margin-top: 0;
+  }
+
+  .category:not(.has-selected) {
+    display: none;
+  }
+
+  .section-title {
+    margin: 2mm 0 1.5mm !important;
+  }
+
+  .checklist {
+    margin-top: 5mm;
+    margin-bottom: 2mm !important;
+    column-count: 2 !important;
+  }
+
+  .selected-tests {
+    margin-top: 1mm;
+  }
+
+  .selected-test {
+    display: block;
+    padding: 1.5mm 0;
+    border-bottom: 0.1mm dashed #eee;
+    font-size: 4.2mm !important;
+  }
+
+  .patient-info.print-only {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3mm;
+    margin-bottom: 3mm;
+  }
+
+  .form-section {
+    margin-bottom: 3mm !important;
+  }
+
+  .patient-info {
+    margin-bottom: 3mm !important;
+  }
+
+  /* Hide spacer divs when printing */
+  div[style*="height:"],
+  div[style*="height: "] {
+    display: none !important;
+    height: 0 !important;
+  }
+
+  /* Prevent page breaks */
+  html,
+  body {
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  /* Footer -> Doctor Information */
+  .footer-section {
+    position: relative !important;
+    height: auto !important;
+    margin-top: auto !important;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .footer-note,
+  .footer {
+    position: relative;
+  }
+
+  .certificate-container {
+    display: flex;
+    justify-content: space-between;
+    /* pushes left & right */
+    align-items: flex-end;
+    /* align them at the bottom */
+    position: fixed;
+    bottom: 0;
+    left: 25mm;
+    right: 15mm;
+    transform: translateY(12mm);
+    width: calc(100% - 30mm);
+    font-family: Arial, sans-serif;
+  }
+
+  /* follow-up styles */
+  .follow-up {
+    flex: 0 0 auto;
+    width: 30%;
+  }
+
+  .follow-up-date {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .follow-up-date label {
+    white-space: nowrap;
+    font-size: 3.5mm;
+    color: #666;
+  }
+
+  .follow-up-date input {
+    flex: 1;
+    min-width: 30mm;
+    font-size: 3.5mm;
+  }
+
+  /* Follow-up section print styles */
+  .follow-up-section {
+    margin: 3mm 0 !important;
+    padding: 2mm 0 !important;
+    border-top: 1px solid #ccc !important;
+  }
+
+  .follow-up-section .follow-up-date {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .follow-up-section .follow-up-date label {
+    white-space: nowrap;
+    font-size: 3.5mm;
+    color: #333;
+    font-weight: normal;
+  }
+
+  .follow-up-section .follow-up-date input {
+    flex: 1;
+    min-width: 30mm;
+    font-size: 3.5mm;
+    border: 1px solid #ccc !important;
+    background-color: white !important;
+    padding: 1mm;
+  }
+
+  .doctor-name {
+    font-weight: bold;
+    font-size: 12pt;
+    color: #0b3d5c;
+    /* dark teal/blue for professionalism */
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .license {
+    font-size: 10pt;
+    color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .certificate-footer {
+    position: absolute;
+    bottom: 35mm;
+    right: 15mm;
+    text-align: right;
+    font-size: 9.9pt;
+  }
+
+  .footer {
+    -webkit-print-color-adjust: exact;
+    /* Chrome, Safari */
+    print-color-adjust: exact;
+    /* Firefox */
+    background-color: #c7b26e !important;
+    color: white !important;
+    font-size: 8pt;
+    position: relative !important;
+    bottom: auto;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: 0;
+    padding: 5px 10mm;
+    box-sizing: border-box;
+    text-align: center;
+  }
+}

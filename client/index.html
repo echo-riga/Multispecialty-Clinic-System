@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Management - Login</title>
+  <link rel="stylesheet" href="./style/index.css" />
+</head>
+
+<body class="auth">
+  <div class="auth-page">
+    <div class="auth-hero">
+      <h1>Patient Management</h1>
+      <p>Sign in to access your dashboard</p>
+    </div>
+
+    <div id="view-login" class="card auth-card">
+      <h2 class="card-title">Welcome back</h2>
+      <form id="login-form" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required placeholder="Enter your username"
+          autocomplete="username" autofocus />
+
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input id="password" name="password" type="password" required placeholder="Enter your password"
+            autocomplete="current-password" />
+        </div>
+
+        <button id="login-submit" type="submit" class="btn-primary">
+          <span class="btn-label">Login</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+        <p id="error" class="error" role="alert" aria-live="polite" style="display: none;"></p>
+      </form>
+    </div>
+
+    <footer class="auth-footer">
+      <span>© <span id="year"></span> Patient Management</span>
+    </footer>
+  </div>
+
+  <!-- Toast notification container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const errorEl = document.getElementById('error');
+    const passwordInput = document.getElementById('password');
+    const usernameInput = document.getElementById('username');
+    const submitBtn = document.getElementById('login-submit');
+    const yearEl = document.getElementById('year');
+    const toastContainer = document.getElementById('toast-container');
+
+    if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+
+    // Toast notification system
+    function showToast(title, message, type = 'info', duration = 5000) {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+
+      const icon = type === 'success' ? '✓' :
+        type === 'error' ? '!' :
+          type === 'warning' ? '⚠' : 'i';
+
+      toast.innerHTML = `
+        <div class="toast-icon">${icon}</div>
+        <div class="toast-content">
+          <div class="toast-title">${title}</div>
+          <div class="toast-message">${message}</div>
+        </div>
+        <button class="toast-close" aria-label="Close notification">×</button>
+        <div class="toast-progress" style="animation-duration: ${duration}ms;"></div>
+      `;
+
+      toastContainer.appendChild(toast);
+
+      // Trigger animation
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
+      });
+
+      // Auto-dismiss
+      const autoDismiss = setTimeout(() => {
+        dismissToast(toast);
+      }, duration);
+
+      // Manual dismiss
+      const closeBtn = toast.querySelector('.toast-close');
+      closeBtn.addEventListener('click', () => {
+        clearTimeout(autoDismiss);
+        dismissToast(toast);
+      });
+
+      // Click to dismiss
+      toast.addEventListener('click', (e) => {
+        if (e.target === toast || e.target.closest('.toast-content')) {
+          clearTimeout(autoDismiss);
+          dismissToast(toast);
+        }
+      });
+    }
+
+    function dismissToast(toast) {
+      toast.classList.add('hide');
+      setTimeout(() => {
+        if (toast.parentNode) {
+          toast.parentNode.removeChild(toast);
+        }
+      }, 300);
+    }
+
+    function redirectToDashboard(role) {
+      const allowed = role === 'doctor' || role === 'nurse' || role === 'patient' || role === 'admin';
+      if (allowed) {
+        window.location.href = `/dashboards/${role}.html`;
+        return;
+      }
+      // Role not supported: clear any saved user and surface an error
+      clearUser();
+      showToast('Access Denied', 'This role has no dashboard available.', 'error', 7000);
+      setLoading(false);
+    }
+
+    function saveUser(user) { localStorage.setItem('authUser', JSON.stringify(user)); }
+    function loadUser() { const raw = localStorage.getItem('authUser'); return raw ? JSON.parse(raw) : null; }
+    function clearUser() { localStorage.removeItem('authUser'); }
+
+    async function login(username, password) {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({ error: 'Login failed' }));
+        throw new Error(data.error || 'Login failed');
+      }
+      return res.json();
+    }
+
+    function setLoading(isLoading) {
+      if (submitBtn) submitBtn.classList.toggle('is-loading', !!isLoading);
+      const toToggle = [usernameInput, passwordInput, submitBtn];
+      toToggle.forEach(el => { if (el) el.disabled = !!isLoading; });
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.textContent = '';
+      const formData = new FormData(loginForm);
+      const username = formData.get('username');
+      const password = formData.get('password');
+      try {
+        setLoading(true);
+        const user = await login(username, password);
+        saveUser(user);
+        showToast('Login Successful', `Welcome back, ${user.username}!`, 'success', 3000);
+        // Small delay to show success toast before redirect
+        setTimeout(() => {
+          redirectToDashboard(user.role);
+        }, 1000);
+      } catch (err) {
+        showToast('Login Failed', err.message, 'error', 7000);
+        setLoading(false);
+      }
+    });
+
+    const existing = loadUser();
+    if (existing && (existing.role === 'doctor' || existing.role === 'nurse' || existing.role === 'patient' || existing.role === 'admin')) {
+      redirectToDashboard(existing.role);
+    } else {
+      if (existing) { clearUser(); }
+      if (usernameInput) usernameInput.focus();
+    }
+  </script>
+</body>
+
+</html>
