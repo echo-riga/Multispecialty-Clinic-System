@@ -1,6 +1,6 @@
 # Multi-Specialty Clinic Management System
 
-![Clinic System Thumbnail](thumbnail.png)
+![Clinic System Thumbnail](thumbnail.png](https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.15752-9/608428742_846778574807550_4880212780781955053_n.png?_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=KC0CuOwMuKAQ7kNvwHAR_Q1&_nc_oc=Adn-A7ihLX-6DVLfMihuyKvdGHdoqIY6TUSDiv9CKs5Vi2MDV8rekpEIPoUvutARlDrgKuQxvUrUeaje6btCxsRv&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl4-4.fna&oh=03_Q7cD4AF0-9ffkXak_GWmDInp0on8Ku0JNikPC0HUiBOoPcSlEg&oe=6978EE65)
 
 ## Overview
 The **Multi-Specialty Clinic Management System** is a proprietary software solution created for a specific client. It is intended for healthcare use by doctors and clinic staff. The system streamlines patient workflows, digitizes records, and provides secure management of appointments, medical history, and patient details.  
