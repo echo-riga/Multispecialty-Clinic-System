@@ -1,4 +1,4 @@
-# 🏥 Clinic Management System
+# 🏥 Multispecialty Clinic Management System
 
 ## 📌 Overview
 Desktop application for managing clinic operations. Helps doctors and staff organize patient information, appointments, and medical documents.
