@@ -1,132 +1,38 @@
-# 🏥 Multi-Specialty Clinic Management System
+ Multispecialty Clinic Management System
+📌 Overview
+A desktop application for managing daily clinic operations. Designed to help doctors and clinic staff organize patient information, schedule appointments, and handle medical documentation efficiently.
 
-## 📌 Overview
+✨ General Features
+Appointment Scheduling - Manage patient appointments
 
-The **Multi-Specialty Clinic Management System** is a desktop-based application designed to manage essential clinic operations efficiently. It supports appointment scheduling, patient record management, and medical document printing for multiple doctors and clinic staff.
+Patient Records - Store and access patient information
 
-The system maintains detailed patient profiles, including vital measurements and diagnosis history, ensuring organized, accurate, and accessible medical records.
+Medical Documentation - Generate prescriptions and medical forms
 
----
+Clinic Operations - Streamline daily clinic workflows
 
-## ✨ Key Features
-
-### 📅 **Appointment Management**
-- Schedule appointments for multiple doctors
-- View and manage daily appointments
-- Doctor-specific scheduling
-
-### 👤 **Patient Record Management**
-- Comprehensive patient profiles
-- Diagnosis history tracking
-- Complete medical record management
-
-### 📊 **Patient Information Tracking**
-| **Vital Measurement** | **Details** |
-|----------------------|-------------|
-| **Height** | Record and track patient height |
-| **Weight** | Monitor weight changes over time |
-| **BMI** | Automatic BMI calculation |
-| **Blood Type** | Store blood type information |
-
-### 🖨️ **Medical Document Printing**
-- **Prescriptions** - Generate medication prescriptions
-- **Laboratory Exam Requests** - Create lab test orders
-- **Medical Certificates** - Issue official medical documents
-
-### 🏢 **Clinic Operations**
-- Centralized workflow management
-- Multi-doctor support
-- Staff coordination tools
-
----
-
-## 🖼️ Screenshots
-
+🖼️ Application Interface
 <div align="center">
-  
-### **Dashboard Overview**
-<img src="screenshots/dashboard.png" width="48%" alt="Dashboard Interface" />
-<img src="screenshots/patient-profile.png" width="48%" alt="Patient Profile" />
-
-*Dashboard and Patient Profile interfaces showing clinic overview and detailed patient information.*
-
-### **Core Functionalities**
-<img src="screenshots/appointment.png" width="48%" alt="Appointment Scheduling" />
-<img src="screenshots/prescription.png" width="48%" alt="Prescription Management" />
-
-*Appointment scheduling system and prescription generation module.*
+System Overview
+<img src="screenshots/screenshot1.png" width="48%" alt="Main Interface" /> <img src="screenshots/screenshot2.png" width="48%" alt="Patient Management" /><img src="screenshots/screenshot3.png" width="48%" alt="Appointment View" /> <img src="screenshots/screenshot4.png" width="48%" alt="Document Generation" />
+Interface screens showing various system functionalities
 
 </div>
-
----
-
-## 🛠️ Tech Stack
-
-| **Layer** | **Technology** | **Purpose** |
-|-----------|----------------|-------------|
-| **Backend** | Node.js, Express | Server-side logic and API |
-| **Frontend** | Bootstrap | Responsive user interface |
-| **Database** | SQLite | Lightweight local data storage |
-| **Platform** | Windows (Desktop) | Primary deployment target |
-
----
-
-## 📁 Project Structure
-
-```
-project-root/
-│
-├── server/                 # Node.js backend
-│   ├── node_modules/      # Dependencies
-│   ├── src/               # Source code
-│   ├── package.json       # Project configuration
-│   └── ...               # Backend files
-│
-├── dist/                  # Compiled application
-│   └── server.exe        # Windows executable
-│
-├── screenshots/           # Application visuals
-│   ├── dashboard.png
-│   ├── patient-profile.png
-│   ├── appointment.png
-│   └── prescription.png
-│
-└── README.md             # This documentation
-```
-
----
-
-## 🚀 Build & Run
-
-### **1️⃣ Install Dependencies**
-```bash
+🛠️ Technology Stack
+Component	Technology
+Backend	Node.js, Express
+Frontend	Bootstrap
+Database	SQLite
+Platform	Windows Desktop
+🚀 How to Build & Run
+1. Install Dependencies
+bash
 cd server
 npm install
-```
-
-> **Note:** Ensure `sqlite3` is installed on your system. This project runs on the local environment and does not use a virtual environment.
-
-### **2️⃣ Build for Windows**
-```bash
+2. Build Application
+bash
 npm run build:win
-```
-
-### **3️⃣ Run the Application**
-```bash
+3. Run the Application
+bash
 dist/server.exe
-```
-
----
-
-## 📝 Important Notes
-
-- ✅ **Desktop-Oriented**: Designed specifically for clinic desktop management
-- ✅ **Lightweight Storage**: Uses SQLite for efficient local data management
-- ✅ **Scalability**: Suitable for small to medium-sized clinics
-- ✅ **Local Environment**: Operates entirely within local network/computer
-
----
-
-<div align="center">
-<strong>🚀 Ready for Efficient Clinic Management</strong>
-</div>
+<div align="center"> <strong>Ready for Clinic Use</strong> </div>
