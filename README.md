@@ -1,62 +1,73 @@
-# Multi-Specialty Clinic Management System
+🏥 Multi-Specialty Clinic Management System
+Overview
 
+The Multi-Specialty Clinic Management System is a desktop-based application designed to manage essential clinic operations. It helps organize appointments, patient records, and medical documentation while supporting workflows for a doctor or clinic staff.
 
-<p float="left">
-  <a href="https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.15752-9/608428742_846778574807550_4880212780781955053_n.png" target="_blank">
-    <img src="https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.15752-9/608428742_846428742807550_4880212780781955053_n.png" width="200" />
-  </a>
-  <a href="https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.15752-9/605831623_1425401779191702_5554333328950806019_n.png" target="_blank">
-    <img src="https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.15752-9/605831623_1425401779191702_5554333328950806019_n.png" width="200" />
-  </a>
-  <a href="https://scontent.fmnl4-7.fna.fbcdn.net/v/t1.15752-9/605135623_1889208815322055_3091992793292127559_n.png" target="_blank">
-    <img src="https://scontent.fmnl4-7.fna.fbcdn.net/v/t1.15752-9/605135623_1889208815322055_3091992793292127559_n.png" width="200" />
-  </a>
-  <a href="https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.15752-9/605860936_1816777752309145_5894943307934554595_n.png" target="_blank">
-    <img src="https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.15752-9/605860936_1816777752309145_5894943307934554595_n.png" width="200" />
-  </a>
-</p>
+The system stores comprehensive patient information, including personal details, vital measurements, and medical records such as diagnosis history.
 
----
+Key Features
 
-## Overview
-The **Multi-Specialty Clinic Management System** fully digitizes an exclusive clinic workflow. It manages appointments, patient records, and printing of prescriptions, laboratory exams, and certificates. The system streamlines operations for multiple doctors and clinic staff.
+Appointment scheduling for multiple doctors
 
-**Key Features:**
-- Appointment scheduling for multiple doctors  
-- Patient records and history management  
-- Printing of prescriptions, laboratory exams, and certificates  
-- Complete digitization of clinic workflows  
+Patient records and diagnosis history management
 
----
+Detailed patient profiles:
 
-## Tech Stack
-- **Backend:** Node.js, Express  
-- **Frontend:** Bootstrap  
-- **Database:** SQLite  
+Height
 
----
+Weight
 
-## Project Structure
+BMI
 
-- `server/` → Contains the Node.js backend and all dependencies  
-- `dist/` → Contains the compiled Windows executable (`server.exe`)  
+Blood type
 
----
+Printing of:
 
-## How to Build and Run
+Prescriptions
 
-1. Navigate to the server directory:
-```bash
+Laboratory exam requests
+
+Medical certificates
+
+Centralized and organized clinic workflow management
+
+System Preview
+<p align="center"> <img src="screenshots/dashboard.png" width="45%" /> <img src="screenshots/patient-profile.png" width="45%" /> </p> <p align="center"> <img src="screenshots/appointment.png" width="45%" /> <img src="screenshots/prescription.png" width="45%" /> </p>
+Tech Stack
+
+Backend: Node.js, Express
+
+Frontend: Bootstrap
+
+Database: SQLite
+
+Project Structure
+server/   → Node.js backend and dependencies
+dist/     → Compiled Windows executable (server.exe)
+
+How to Build and Run
+1️⃣ Navigate to the server directory
 cd server
-Install dependencies:
 
+2️⃣ Install dependencies
 npm install
-⚠️ If you encounter errors, make sure sqlite3 is installed on your PC. This system relies on your environment since it is not created using a virtual environment.
 
-Build the system for Windows:
+⚠️ If you encounter errors, ensure that sqlite3 is installed on your system.
+This application relies on the local environment and is not built using a virtual environment.
 
+3️⃣ Build the application for Windows
 npm run build:win
-Open the compiled executable:
 
+4️⃣ Run the application
 dist/server.exe
-The system is ready to use.
+
+
+The system is now ready to use.
+
+Notes
+
+Designed as a desktop clinic management solution
+
+Uses SQLite for lightweight local data storage
+
+Suitable for small to medium-sized clinics
