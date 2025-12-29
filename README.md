@@ -1,38 +1,50 @@
- Multispecialty Clinic Management System
-📌 Overview
-A desktop application for managing daily clinic operations. Designed to help doctors and clinic staff organize patient information, schedule appointments, and handle medical documentation efficiently.
+# 🏥 Clinic Management System
 
-✨ General Features
-Appointment Scheduling - Manage patient appointments
+## 📌 Overview
+Desktop application for managing clinic operations. Helps doctors and staff organize patient information, appointments, and medical documents.
 
-Patient Records - Store and access patient information
+---
 
-Medical Documentation - Generate prescriptions and medical forms
+## ✨ Features
+- Appointment scheduling
+- Patient record management
+- Medical document generation
+- Daily clinic workflow management
 
-Clinic Operations - Streamline daily clinic workflows
+---
 
-🖼️ Application Interface
-<div align="center">
-System Overview
-<img src="screenshots/screenshot1.png" width="48%" alt="Main Interface" /> <img src="screenshots/screenshot2.png" width="48%" alt="Patient Management" /><img src="screenshots/screenshot3.png" width="48%" alt="Appointment View" /> <img src="screenshots/screenshot4.png" width="48%" alt="Document Generation" />
-Interface screens showing various system functionalities
+## 🖼️ Screenshots
+<p align="center">
+  <img src="screenshots/screenshot1.png" width="48%" />
+  <img src="screenshots/screenshot2.png" width="48%" />
+  <br/>
+  <img src="screenshots/screenshot3.png" width="48%" />
+  <img src="screenshots/screenshot4.png" width="48%" />
+</p>
 
-</div>
-🛠️ Technology Stack
-Component	Technology
-Backend	Node.js, Express
-Frontend	Bootstrap
-Database	SQLite
-Platform	Windows Desktop
-🚀 How to Build & Run
-1. Install Dependencies
-bash
+---
+
+## 🛠️ Tech Stack
+| Component | Technology |
+|-----------|------------|
+| Backend | Node.js, Express |
+| Frontend | Bootstrap |
+| Database | SQLite |
+| Platform | Windows Desktop |
+
+---
+
+## 🚀 Installation
+
+1. **Install dependencies**
+```bash
 cd server
 npm install
-2. Build Application
+Build for Windows
+
 bash
 npm run build:win
-3. Run the Application
+Run the application
+
 bash
 dist/server.exe
-<div align="center"> <strong>Ready for Clinic Use</strong> </div>
