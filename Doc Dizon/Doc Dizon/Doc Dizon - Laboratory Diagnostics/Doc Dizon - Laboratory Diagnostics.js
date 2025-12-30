@@ -14,7 +14,7 @@ function clearBtn() {
   document.getElementById("sex").value = "";
   document.getElementById("address").value = "";
   document.getElementById("date").value = "";
-  document.getElementById("follow-up").value = ""; // Fixed: changed from "follow-up-footer" to "follow-up"
+  document.getElementById("follow-up-footer").value = "";
   document.getElementById("other-tests").value = "";
 
   // Clear all multi-selects
@@ -35,7 +35,6 @@ function clearBtn() {
   const categories = document.querySelectorAll(".category");
   categories.forEach((cat) => cat.classList.remove("has-selected"));
 }
-
 // Function to create a new page header (clinic-header + form-section) using current user info
 function createPageHeader(pageNum) {
   // Get current user info
@@ -67,7 +66,7 @@ function createPageHeader(pageNum) {
       </div>
       <div class="patient-info">
         <input type="text" id="address-${pageNum}" placeholder="Address" style="flex: 2;" value="${address}" readonly>
-        <input type="date" id="date-${pageNum}" placeholder="Date" value="${date}" readonly>
+        <input type="date" id="date-${pageNum}" placeh  older="Date" value="${date}" readonly>
       </div>
     </div>
   `;
@@ -85,7 +84,6 @@ function addNewPageWithHeader() {
   newPage.appendChild(header);
   pagesContainer.appendChild(newPage);
 }
-
 let medicationCount = 1;
 let medicationPerPage = 3;
 let currentPageMedications = 1;
@@ -267,12 +265,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const followup = params.get("followup");
     console.log("Follow-up date parameter:", followup);
 
-    // Set follow-up date to input
-    const followupInput = byName("follow-up");
+    // Set follow-up date to footer input
+    const followupFooter = byName("follow-up-footer");
 
-    if (followupInput && followup) {
-      followupInput.value = followup;
-      console.log("Follow-up input value set to:", followupInput.value);
+    if (followupFooter && followup) {
+      followupFooter.value = followup;
+      console.log("Footer follow-up input value set to:", followupFooter.value);
     }
 
     // Others/tests free text
@@ -480,12 +478,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // We're in an iframe, print directly
         setTimeout(() => {
           try {
-            // Handle follow-up section visibility before printing - FIXED
-            const followupInput = document.getElementById("follow-up"); // Fixed: changed from "follow-up-footer"
+            // Handle follow-up section visibility before printing
+            const followupFooter = document.getElementById("follow-up-footer");
             const followupSection = document.querySelector(".follow-up");
 
-            if (followupInput) {
-              if (!followupInput.value || followupInput.value.trim() === "") {
+            if (followupFooter) {
+              if (!followupFooter.value || followupFooter.value.trim() === "") {
                 if (followupSection) {
                   followupSection.style.setProperty(
                     "display",
@@ -542,12 +540,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // We're in a regular window, use the existing print function
         setTimeout(() => {
           try {
-            // Handle follow-up section visibility before printing - FIXED
-            const followupInput = document.getElementById("follow-up"); // Fixed: changed from "followupFooter"
+            // Handle follow-up section visibility before printing
+            const followupFooter = document.getElementById("follow-up-footer");
             const followupSection = document.querySelector(".follow-up");
 
-            if (followupInput) {
-              if (!followupInput.value || followupInput.value.trim() === "") {
+            if (followupFooter) {
+              if (!followupFooter.value || followupFooter.value.trim() === "") {
                 if (followupSection) {
                   followupSection.style.setProperty(
                     "display",
@@ -653,7 +651,7 @@ function paginateChecklist() {
   const categories = Array.from(checklist.children).filter(
     (el) => el.classList && el.classList.contains("category")
   );
-  const maxPerPage = 6;
+  const maxPerPage = 3;
   document.querySelectorAll(".dynamic-page").forEach((el) => el.remove());
   let pageNum = 1;
   let selectedCategories = categories.filter((cat) =>
@@ -713,52 +711,10 @@ function paginateChecklist() {
     pageNum++;
   }
   // Add footer only to the last actual page
-  if (lastPage) {
-    const footer = document.getElementById("main-footer");
-    if (footer) {
-      const footerClone = footer.cloneNode(true);
 
-      // Check follow-up date in the cloned footer
-      const followupInputClone = footerClone.querySelector("#follow-up");
-      const followupSectionClone = footerClone.querySelector(".follow-up");
-
-      if (followupInputClone && followupSectionClone) {
-        if (
-          !followupInputClone.value ||
-          followupInputClone.value.trim() === ""
-        ) {
-          followupSectionClone.style.setProperty(
-            "display",
-            "none",
-            "important"
-          );
-          followupSectionClone.style.setProperty(
-            "visibility",
-            "hidden",
-            "important"
-          );
-        } else {
-          followupSectionClone.style.setProperty(
-            "display",
-            "block",
-            "important"
-          );
-          followupSectionClone.style.setProperty(
-            "visibility",
-            "visible",
-            "important"
-          );
-        }
-      }
-
-      lastPage.appendChild(footerClone);
-    }
-    lastPage.style.pageBreakAfter = "auto"; // Remove page break from last page
-  }
   document.querySelector(".clinic-header").style.display = "none";
   document.querySelector(".form-section").style.display = "none";
   checklist.style.display = "none";
-  document.getElementById("main-footer").style.display = "none";
 
   // CSS fix: Remove forced page break if only one page
   const dynamicPages = document.querySelectorAll(".dynamic-page");
@@ -776,12 +732,12 @@ function restoreOriginal() {
 }
 
 function printPrescription() {
-  // Check if follow-up date has a value - FIXED ID
-  const followupInput = document.getElementById("follow-up");
+  // Check if follow-up date has a value
+  const followupFooter = document.getElementById("follow-up-footer");
   const followupSection = document.querySelector(".follow-up");
 
-  if (followupInput) {
-    if (!followupInput.value || followupInput.value.trim() === "") {
+  if (followupFooter) {
+    if (!followupFooter.value || followupFooter.value.trim() === "") {
       // Hide follow-up section if no date is selected
       if (followupSection) {
         followupSection.style.setProperty("display", "none", "important");
@@ -818,7 +774,6 @@ function printPrescription() {
       category.classList.remove("has-selected");
     }
   });
-
   // Handle "Others" field
   const otherTestsInput = document.getElementById("other-tests");
   const othersContainer = document.getElementById("others-selected");
@@ -832,7 +787,6 @@ function printPrescription() {
   } else {
     categoryElements.others.classList.remove("has-selected");
   }
-
   // Now paginate
   paginateChecklist();
   window.print();
