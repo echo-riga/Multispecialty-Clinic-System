@@ -1,13 +1,11 @@
 # 🏥 Multispecialty Clinic Management System
 
 ## 📌 Overview
-
 Desktop application for managing clinic operations with multi-doctor support. Each doctor maintains separate patient records while sharing common clinic infrastructure. Helps medical professionals organize patient information, appointments, and medical documents.
 
 ---
 
 ## ✨ Features
-
 - Multi-doctor appointment scheduling
 - Individual doctor patient record management
 - Medical document generation
@@ -17,7 +15,6 @@ Desktop application for managing clinic operations with multi-doctor support. Ea
 ---
 
 ## 🖼️ Screenshots
-
 <p align="center">
   <img src="screenshots/screenshot7.png" width="98%" style="margin-bottom: 20px;" />
   <br/>
@@ -31,13 +28,12 @@ Desktop application for managing clinic operations with multi-doctor support. Ea
 ---
 
 ## 🛠️ Tech Stack
-
-| Component | Technology       |
-| --------- | ---------------- |
-| Backend   | Node.js, Express |
-| Frontend  | Bootstrap        |
-| Database  | SQLite           |
-| Platform  | Windows Desktop  |
+| Component | Technology |
+|-----------|------------|
+| Backend | Node.js, Express |
+| Frontend | Bootstrap |
+| Database | SQLite |
+| Platform | Windows Desktop |
 
 ---
 
